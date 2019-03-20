@@ -11,7 +11,6 @@ namespace Common.Domains
         public int Id { get; set; }
         public string URL { get; set; }
         public string fas3 { get; set; }
-        public string fas343 { get; set; }
         public int ProductId { get; set; }
         public int ProductId2 { get; set; }
     }

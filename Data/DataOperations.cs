@@ -11,10 +11,20 @@ namespace Data
     {
         public static void CreateDatabaseIfNotExists()
         {
-            MyDbContext db = new MyDbContext();
-
-            db.Database.CreateIfNotExists();
+            using (MyDbContext db = new MyDbContext())
+            {
+                db.Database.CreateIfNotExists();
+            }
         }
+
+        public static void InitDatabase()
+        {
+            using (MyDbContext db = new MyDbContext())
+            {
+                db.Database.Initialize(false);
+            }
+        }
+
         public static List<Product> GetAllProducts()
         {
             using (var mydb=new MyDbContext())

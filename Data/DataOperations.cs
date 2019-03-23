@@ -31,6 +31,14 @@ namespace Data
             {
                return mydb.Products.ToList();
             }
-        }     
+        }
+
+        public static Product GetProductByID(int id)
+        {
+            using (var mydb = new MyDbContext())
+            {
+                return mydb.Products.Where(p=>p.Id==id).FirstOrDefault();
+            }
+        }
     }
 }

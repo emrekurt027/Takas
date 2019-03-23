@@ -1,6 +1,8 @@
 ﻿using Common.Domains;
+using Data;
 using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -9,14 +11,30 @@ namespace Services
 {
     public class ProductService
     {
-        public static List<Product> GetData()
+        MyDbContext context;
+
+        public async Task<List<Product>> GetAllData()
         {
-            return Data.DataOperations.GetAllProducts();
+            using (context = new MyDbContext())
+            {
+                return await context.Products.ToListAsync();
+            }
         }
 
-        public static Product GetDataByID(int id)
+        public async Task<Product> GetDataByID(int id)
         {
-            return Data.DataOperations.GetProductByID(id);
+            using (context = new MyDbContext())
+            {
+                return await context.Products.FindAsync(id);
+            }
         }
+
+        /*public async Task Add(Product product)
+        {
+            using (context = new MyDbContext())
+            {
+                context.Products.Add(product);
+            }
+        }*/
     }
 }

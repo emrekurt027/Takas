@@ -8,13 +8,11 @@ namespace Common.Models
 {
     public class OrderShowModel
     {
-        // nurbanu profile view ordershowmdoel apisi yazılmadı.
         public bool State { get; set; }
         public int Token { get; set; }
         public string UserName { get; set; }
         public string Name { get; set; }
         public string ImageUrl { get; set; }
         public DateTime Date { get; set; }
-        // webservis/ordercontroller/... kullanımını 
     }
 }

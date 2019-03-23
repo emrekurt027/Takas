@@ -12,8 +12,7 @@ namespace Common.Domains
 
         [MaxLength(100)]
         public string Name { get; set; }
-        public int ProductID { get; set; }
 
-        public ICollection<Product> Products { get; set; }
+        public int ProductID { get; set; }
     }
 }

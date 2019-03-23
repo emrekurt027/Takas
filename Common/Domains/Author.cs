@@ -6,9 +6,8 @@ using System.Threading.Tasks;
 
 namespace Common.Domains
 {
-    public class Author
+    public class Author: BaseEntity
     {
-        public int Id { get; set; }
         public string Name { get; set; }
     }
 }

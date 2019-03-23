@@ -6,9 +6,8 @@ using System.Threading.Tasks;
 
 namespace Common.Domains
 {
-    public class Comment
+    public class Comment: BaseEntity
     {
-        public int Id { get; set; }
         public int UserId { get; set; }
         public string Description { get; set; }
         public DateTime Date { get; set; }

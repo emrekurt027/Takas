@@ -6,9 +6,8 @@ using System.Threading.Tasks;
 
 namespace Common.Domains
 {
-    public class Image
+    public class Image: BaseEntity
     {
-        public int Id { get; set; }
         public string URL { get; set; }
         public string fas3 { get; set; }
         public string fas343 { get; set; }

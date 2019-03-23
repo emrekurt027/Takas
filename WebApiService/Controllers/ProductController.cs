@@ -14,8 +14,8 @@ namespace WebApiService.Controllers
     [RoutePrefix("api/Product")]
     public class ProductController : ApiController
     {
-        ProductService _productService;
-        public ProductController(ProductService productService)
+        BaseService<Product> _productService;
+        public ProductController(BaseService<Product> productService)
         {
             _productService = productService;
         }
@@ -23,13 +23,13 @@ namespace WebApiService.Controllers
         [Route("GetData")]
         public async Task<List<Product>> GetData()
         {            
-           return await _productService.GetAllData();
+           return await _productService.GetAll();
         }
 
         [Route("GetDataById")]
         public async Task<IHttpActionResult> GetDataById(int id)
         {
-            var product = await _productService.GetDataByID(id);
+            var product = await _productService.GetById(id);
             if(product == null)
             {
                 return NotFound();
@@ -43,7 +43,21 @@ namespace WebApiService.Controllers
         {
             try
             {
-                await _productService.AddData(product);
+                await _productService.Add(product);
+                return Ok();
+            }
+            catch (Exception e)
+            {
+                return Content(HttpStatusCode.InternalServerError, e.Message);
+            }
+        }
+
+        [Route("DeleteData")]
+        public async Task<IHttpActionResult> DeleteData(Product product)
+        {
+            try
+            {
+                await _productService.Delete(product);
                 return Ok();
             }
             catch (Exception e)
@@ -57,7 +71,7 @@ namespace WebApiService.Controllers
         {
             try
             {
-                await _productService.UpdateData(product);
+                await _productService.Update(product);
                 return Ok();
             }
             catch (Exception e)

@@ -6,9 +6,8 @@ using System.Threading.Tasks;
 
 namespace Common.Domains
 {
-    public class Category: BaseEntity
+    public abstract class BaseEntity
     {
-        public string Name { get; set; }
-        public int ProductID { get; set; }
+        public virtual int Id { get; set; }
     }
 }

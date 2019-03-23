@@ -9,7 +9,8 @@ namespace Common.Interfaces
     public interface ICustomUser
     {     
         decimal Credits { get; set; }
-        DateTime Date { get; set; }
+        DateTime BirthDate { get; set; }
+        DateTime RegDate { get; set; }
         string Adress { get; set; }
     }
 }

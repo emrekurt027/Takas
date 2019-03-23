@@ -6,9 +6,8 @@ using System.Threading.Tasks;
 
 namespace Common.Domains
 {
-    public class Product
+    public class Product:BaseEntity
     {
-        public int Id { get; set; }
         public int AuthorId { get; set; }
         public int PictureId { get; set; }
         public int UserId { get; set; }

@@ -45,6 +45,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Domains\Author.cs" />
+    <Compile Include="Domains\BaseEntity.cs" />
     <Compile Include="Domains\Category.cs" />
     <Compile Include="Domains\Comment.cs" />
     <Compile Include="Domains\Image.cs" />

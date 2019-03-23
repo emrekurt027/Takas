@@ -29,12 +29,23 @@ namespace Services
             }
         }
 
-        /*public async Task Add(Product product)
+        public async Task AddData(Product product)
         {
             using (context = new MyDbContext())
             {
                 context.Products.Add(product);
+                await context.SaveChangesAsync();
             }
-        }*/
+        }
+
+        public async Task UpdateData(Product product)
+        {
+            using (context = new MyDbContext())
+            {
+                var oldProduct = context.Products.Find(product.Id);
+                context.Entry(oldProduct).CurrentValues.SetValues(product);
+                await context.SaveChangesAsync();
+            }
+        }
     }
 }

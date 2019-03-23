@@ -38,10 +38,34 @@ namespace WebApiService.Controllers
             return Ok(product);
         }
 
-        /*[Route("AddData")]
-        public async Task<IHttpActionResult> AddData(Product product)
+        [Route("PostNewData")]
+        public async Task<IHttpActionResult> PostNewData(Product product)
         {
-            return NotImplementedException;
-        }*/
+            try
+            {
+                await _productService.AddData(product);
+                return Ok();
+            }
+            catch (Exception e)
+            {
+                return Content(HttpStatusCode.InternalServerError, e.Message);
+            }
+        }
+
+        [Route("UpdateData")]
+        public async Task<IHttpActionResult> UpdateData(Product product)
+        {
+            try
+            {
+                await _productService.UpdateData(product);
+                return Ok();
+            }
+            catch (Exception e)
+            {
+                return Content(HttpStatusCode.InternalServerError, e.Message);
+            }
+        }
+
+
     }
 }

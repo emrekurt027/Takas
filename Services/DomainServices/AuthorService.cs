@@ -9,13 +9,13 @@ using System.Threading.Tasks;
 
 namespace Services.DomainServices
 {
-    public class ProductService:BaseService<Product>
+    public class AuthorService : BaseService<Author>
     {
-        public Product GetByName(string name)
+        public Author GetByName(string name)
         {
             using (context = new MyDbContext())
             {
-                return context.Set<Product>().Where(p => p.Name == name).FirstOrDefault();
+                return context.Set<Author>().Where(p => p.Name == name).FirstOrDefault();
             }
         }
     }

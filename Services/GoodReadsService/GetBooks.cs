@@ -1,6 +1,7 @@
 ﻿using Common.Domains;
 using Goodreads;
 using Goodreads.Models.Response;
+using Services.DomainServices;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -21,27 +22,46 @@ namespace Services.GoodReadsService
 
             // Now you are able to call some Goodreads endpoints that don't need the OAuth credentials. For example:
             // Get a book by specified id.
-            Book kitap = await client.Books.GetByTitle("hell");
+            Book kitap = await client.Books.GetByTitle("love");
             string authorname = "";
             foreach (var item in kitap.Authors)
             {
                 authorname += item.Name + " & ";
             }
             authorname = authorname.Substring(0, authorname.Length - 3);
-
+            //db yazar
+            AuthorService _authorService = new AuthorService();
             Common.Domains.Author author = new Common.Domains.Author
             {
                 Name = authorname
             };
+            await _authorService.Add(author);
+            //db image
 
-
+            ProductService _productService = new ProductService();
             Product book = new Product
             {
-            }
-            Common.Domains.Category categories = new Category
-            {
-
+                AuthorId = _authorService.GetByName(authorname).Id,
+                ImageUrl = kitap.ImageUrl,
+                Description = kitap.Description,
+                Verify = false,
+                Name=kitap.Title                
             };
+            await _productService.Add(book);
+
+            CategoryService _categoryService = new CategoryService();
+            foreach (var item in kitap.PopularShelves)
+            {
+                Common.Domains.Category categories = new Category
+                {
+                    Name = item.Key,
+                    ProductID=_productService.GetByName(kitap.Title).Id
+                };
+                await _categoryService.Add(categories);
+
+            }
+            int x = 15;
+           
         }
     }
 }

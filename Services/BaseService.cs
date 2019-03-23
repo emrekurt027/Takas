@@ -11,7 +11,7 @@ namespace Services
 {
     public class BaseService<T> where T : BaseEntity
     {
-        MyDbContext context;
+        protected MyDbContext context;
 
         public async Task<List<T>> GetAll()
         {
@@ -71,5 +71,7 @@ namespace Services
             T obj =await GetById(id);
             await Delete(obj);
         }
+
+
     }
 }

@@ -20,7 +20,6 @@ namespace Data
         public virtual DbSet<Category> Categories { get; set; }
         public virtual DbSet<Comment> Comments { get; set; }
         public virtual DbSet<Order> Orders { get; set; }
-        public virtual DbSet<Image> Images { get; set; }
 
         public static MyDbContext Create()
         {

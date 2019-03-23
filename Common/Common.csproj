@@ -55,7 +55,6 @@
     <Compile Include="Domains\BaseEntity.cs" />
     <Compile Include="Domains\Category.cs" />
     <Compile Include="Domains\Comment.cs" />
-    <Compile Include="Domains\Image.cs" />
     <Compile Include="Domains\Order.cs" />
     <Compile Include="Domains\Product.cs" />
     <Compile Include="Interfaces\ICustomUser.cs" />

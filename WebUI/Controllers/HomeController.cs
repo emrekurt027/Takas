@@ -14,18 +14,19 @@ namespace WebUI.Controllers
     {
         public ActionResult Index()
         {
-            HttpClient client = new HttpClient();
+            //HttpClient client = new HttpClient();
 
-            client.BaseAddress = new Uri("http://localhost:2252");
-            client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
-            HttpResponseMessage response;
-            response = client.GetAsync("api/Product/GetDataById?id=1").Result;
+            //client.BaseAddress = new Uri("http://localhost:2252");
+            //client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+            //HttpResponseMessage response;
+            //response = client.GetAsync("api/Product/GetDataById?id=1").Result;
 
-            if (response.StatusCode == HttpStatusCode.OK)
-            {
-                Product jResult = response.Content.ReadAsAsync<Product>().Result;
-                return View(jResult);
-            }
+            //if (response.StatusCode == HttpStatusCode.OK)
+            //{
+            //    Product jResult = response.Content.ReadAsAsync<Product>().Result;
+            //    return View(jResult);
+            //}
+
             return View();
         }
 

@@ -2,6 +2,7 @@
 using Autofac.Integration.WebApi;
 using Data;
 using Services;
+using Services.DomainServices;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -35,6 +36,7 @@ namespace WebApiService
             var builder = new ContainerBuilder();
             builder.RegisterType<ProductController>().InstancePerRequest();
             builder.RegisterType<BaseService<Common.Domains.Product>>().InstancePerRequest();
+            builder.RegisterType<ProductService>().InstancePerRequest();
             var container = builder.Build();
             GlobalConfiguration.Configuration.DependencyResolver = new AutofacWebApiDependencyResolver(container);
 

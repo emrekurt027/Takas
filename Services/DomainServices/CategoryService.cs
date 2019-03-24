@@ -18,5 +18,13 @@ namespace Services.DomainServices
                 return context.Set<Category>().Where(p => p.Name == name).FirstOrDefault();
             }
         }
+
+        public async Task<List<string>> GetProductCategories(int productId)
+        {
+            using (context = new MyDbContext())
+            {
+                return await context.Set<Category>().Where(p => p.ProductID == productId).Select(n=>n.Name).ToListAsync();
+            }
+        }
     }
 }

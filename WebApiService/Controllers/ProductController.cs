@@ -6,16 +6,18 @@ using System.Net.Http;
 using System.Threading.Tasks;
 using System.Web.Http;
 using Common.Domains;
+using Common.Models;
 using Data;
 using Services;
+using Services.DomainServices;
 
 namespace WebApiService.Controllers
 {
     [RoutePrefix("api/Product")]
     public class ProductController : ApiController
     {
-        BaseService<Product> _productService;
-        public ProductController(BaseService<Product> productService)
+        ProductService _productService;
+        public ProductController(ProductService productService)
         {
             _productService = productService;
         }
@@ -73,6 +75,20 @@ namespace WebApiService.Controllers
             {
                 await _productService.Update(product);
                 return Ok();
+            }
+            catch (Exception e)
+            {
+                return Content(HttpStatusCode.InternalServerError, e.Message);
+            }
+        }
+
+        [Route("GetProductDetails")]
+        public async Task<IHttpActionResult> GetProductDetails(int id)
+        {
+            try
+            {
+                var productDetail = _productService.GetProductDetails(id);
+                return Ok(productDetail);
             }
             catch (Exception e)
             {

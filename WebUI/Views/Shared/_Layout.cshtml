@@ -3,67 +3,90 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>@ViewBag.Title - My ASP.NET Application</title>
+    <title>@ViewBag.Title -TAKAS</title>
     @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
     @Scripts.Render("~/bundles/modernizr")
-    <script src="https://code.jquery.com/jquery-3.3.1.js" integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60=" crossorigin="anonymous"></script>
-
-    <script src="~/Scripts/Popup.js"></script>
 </head>
 <body>
-    <!--Navbar -->
-    <nav class="navbar navbar-inverse navbar-fixed-top ">
-        <div class="container-fluid">
-            <div class="col col-lg-2">
-                <div class="navbar-header">
-                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#ustMenu">
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                    </button>
-                    <a class="navbar-brand" href="#">MALIBU</a>
-                </div>
-            </div>
+    <div id="menu" class="fixed-top">
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark static-top">
+            <div class="container">
 
-            <div id="searchWrapperContent" class="col col-lg-4">
-                <div class="u-relative">
-                    <div id="searchWrapper">
-                        <div class="u-relative">
-                            <input maxlength="100" type="text" placeholder="Search">
-                            <a href="javascript:void(0)" class="search-icon">
-                                <i class="icon icon-search"></i>
-                            </a>
+                <a class="navbar-brand" href="#">
+                    MALIBU
+                </a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <div id="searchWrapperContent" class="justify-content-center col col-lg-8">
+                    <div class="u-relative">
+                        <div id="searchWrapper">
+                            <div class="u-relative">
+                                <input maxlength="100" type="text" placeholder="Search">
+                                <a href="javascript:void(0)" class="search-icon">
+                                    <span class="glyphicon glyphicon-search"></span>
+                                    <i class="icon icon-search"></i>
+                                </a>
+                            </div>
                         </div>
                     </div>
                 </div>
+
             </div>
 
-            <div class="col col-lg-6">
-                <ul class="nav navbar-nav navbar-right">
-                    <li>@Html.ActionLink("Home", "Index", "Home")</li>
-                    <li>@Html.ActionLink("About", "About", "Home")</li>
-                    <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
-                    <li><a href="#"><span class="glyphicon glyphicon-user"></span>Register</a></li>
-                    <li><a href="#"><span class="glyphicon glyphicon-log-in" id="SignButton" ></span>Login</a></li>
+
+
+
+            <div class="collapse navbar-collapse" id="navbarResponsive">
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item active">
+                        <a class="nav-link" href=@Url.Action("Index", "Home")>Home<span class="sr-only">(current)</span></a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href=@Url.Action("About", "Home")>About</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href=@Url.Action("Contact", "Home")>Contact</a>
+                    </li>
+
+                    @if (true)
+                    {
+                        <li><a href="#"><span class="glyphicon glyphicon-user"></span>Register</a></li>
+                        <li><a href="#"  id="SignButton"><span class="glyphicon glyphicon-log-in"></span>Login</a></li>
+                    }
+                    else
+                    {
+                        <li class="nav-item">
+                            <div class="dropdown">
+                                <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    Profile
+                                </button>
+                                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                    <a class="dropdown-item" href="#">Sent</a>
+                                    <a class="dropdown-item" href="#">My Orders</a>
+                                    <a class="dropdown-item" href="#">Settings</a>
+                                    <a class="dropdown-item" href="#">Log Out</a>
+                                </div>
+                            </div>
+                        </li>
+                    }
                 </ul>
             </div>
 
-
-        </div>
-    </nav>
-    <!--Navbar -->
-    <div class="container body-content">
-        @RenderBody()
-        <hr />
-        
-        <footer>
-            <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>
-        </footer>
+        </nav>
     </div>
 
-    @Scripts.Render("~/bundles/bootstrap")
-    @Scripts.Render("~/bundles/app")
-    
+
+
+    <div class="container body-content">
+        @RenderBody()
+
+        <footer></footer>
+    </div>
+    <script src="~/Scripts/Site.js"></script>
     @RenderSection("scripts", required: false)
 </body>
 </html>

@@ -19,6 +19,10 @@ namespace Common.Models
                     @".)+))([a-zA-Z]{2,4}|[0-9]{1,3})(\]?)$",
                     ErrorMessage = "Email is not valid")]
         public string Email { get; set; }
+        [Required]
+        [DataType(DataType.Date)]
+        [DisplayFormat(DataFormatString = "{0:MM/dd/yyyy}")]
+        public DateTime BirthDate { get; set; }
 
         [StringLength(50, ErrorMessage = "{0} minimum 8 character.!", MinimumLength = 8)]
         public string Password { get; set; }

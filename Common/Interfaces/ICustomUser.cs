@@ -11,6 +11,5 @@ namespace Common.Interfaces
         decimal Credits { get; set; }
         DateTime BirthDate { get; set; }
         DateTime RegDate { get; set; }
-        string Adress { get; set; }
     }
 }

@@ -37,6 +37,10 @@ namespace WebApiService.Models
         [Required]
         [Display(Name = "Email")]
         public string Email { get; set; }
+    
+        public string UserName { get; set; }
+
+        public DateTime BirthDate { get; set; }
 
         [Required]
         [StringLength(100, ErrorMessage = "The {0} must be at least {2} characters long.", MinimumLength = 3)]

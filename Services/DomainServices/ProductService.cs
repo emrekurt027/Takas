@@ -33,7 +33,7 @@ namespace Services.DomainServices
                                          Name = products.Name,
                                          AuthorName = a.Name,
                                          Description = products.Description,
-                                         Images = new List<string>() { products.ImageUrl },
+                                         Images = products.ImageUrl,
                                          UserName = u.UserName
                                      }).FirstOrDefault();
 

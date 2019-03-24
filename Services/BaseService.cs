@@ -71,7 +71,5 @@ namespace Services
             T obj =await GetById(id);
             await Delete(obj);
         }
-
-
     }
 }

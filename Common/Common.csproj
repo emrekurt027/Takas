@@ -59,6 +59,7 @@
     <Compile Include="Domains\Order.cs" />
     <Compile Include="Domains\Product.cs" />
     <Compile Include="Interfaces\ICustomUser.cs" />
+    <Compile Include="Models\AddUserModel.cs" />
     <Compile Include="Models\OrderShowModel.cs" />
     <Compile Include="Models\ProductAddModel.cs" />
     <Compile Include="Models\ProductShowModel.cs" />

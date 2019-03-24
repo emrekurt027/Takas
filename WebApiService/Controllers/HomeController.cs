@@ -12,8 +12,8 @@ namespace WebApiService.Controllers
         {
             ViewBag.Title = "Home Page";
 
-            Services.GoodReadsService.GetBooks getBooks = new Services.GoodReadsService.GetBooks();
-            await getBooks.IndexAsync("scare");
+            //Services.GoodReadsService.GetBooks getBooks = new Services.GoodReadsService.GetBooks();
+            //await getBooks.IndexAsync("scare");
 
             return View();
         }

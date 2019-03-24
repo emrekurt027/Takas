@@ -1,0 +1,46 @@
+﻿@model Common.Models.AddUserModel
+@{
+    ViewBag.Title = "Register";
+}
+
+
+@using (Html.BeginForm("Register", "Account", FormMethod.Post))
+{
+    <div class="col-md-4"></div>
+    <div class="col-md-4 m-auto">
+
+        <div class="form-group">
+            @Html.AntiForgeryToken()
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+            <br />
+            <label for="exampleInputEmail1">Name</label>
+            @Html.TextBoxFor(p => p.UserName, new { @class = "form-control", @placeholder = "Enter Name" })
+            <label class="text-danger text-center">  @Html.ValidationMessageFor(p => p.UserName)</label>
+        </div>
+        <div class="form-group">
+            <label for="exampleInputEmail1">Email address</label>
+            @Html.TextBoxFor(p => p.Email, new { @class = "form-control", @placeholder = "Enter email" })
+            <label class="text-danger text-center">  @Html.ValidationMessageFor(p => p.Email)</label>
+        </div>
+        <div class="form-group">
+            <label for="exampleInputPassword1">Password</label>
+            @Html.TextBoxFor(p => p.Password, new { @class = "form-control", @placeholder = "*******", @type = "password" })
+            <label class="text-danger text-center">  @Html.ValidationMessageFor(p => p.Password)</label>
+        </div>
+        <div class="form-group">
+            <label for="exampleInputPassword1">Password</label>
+            @Html.TextBoxFor(p => p.Password, new { @class = "form-control", @placeholder = "*******", @type = "password" })
+            <label class="text-danger text-center">  @Html.ValidationMessageFor(p => p.Password2)</label>
+        </div>
+        <div class="row">
+            <div class="col-md-4"></div>
+            <div class="col-md-4">
+                <button type="submit" class="btn btn-primary">Submit</button>
+            </div>
+            <div class="col-md-4"></div>
+        </div>
+
+
+    </div>
+    <div class="col-md-4"></div>
+}

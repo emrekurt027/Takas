@@ -4,6 +4,7 @@ using System.Linq;
 using System.Net.Http;
 using System.Reflection;
 using System.Web.Http;
+using System.Web.Http.Cors;
 using Autofac;
 using Autofac.Integration.WebApi;
 using Microsoft.Owin.Security.OAuth;
@@ -17,9 +18,12 @@ namespace WebApiService
         {
             // Web API configuration and services
             // Configure Web API to use only bearer token authentication.
+            var corsAttr = new EnableCorsAttribute("http://localhost:2873", "*", "*");
+            config.EnableCors(corsAttr);
+
             config.SuppressDefaultHostAuthentication();
             config.Filters.Add(new HostAuthenticationFilter(OAuthDefaults.AuthenticationType));
-            config.EnableCors();
+            
 
             // Web API routes
             config.MapHttpAttributeRoutes();

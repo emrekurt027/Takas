@@ -17,24 +17,21 @@
                                 <a href="" class="btn btn-block btn-outline-primary"> <i class="fab fa-facebook-f"></i>   Login via facebook</a>
                             </p>
                             <hr>
-                            @using (Html.BeginForm("Login", "Account", FormMethod.Post))
-                            {
                                 <div class="form-group">
-                                    <input name="" class="form-control" placeholder="Email or login" type="email">
+                                    <input name="" class="form-control" placeholder="Email or login" type="email" id="email-box">
                                 </div> <!-- form-group// -->
                                 <div class="form-group">
-                                    <input class="form-control" placeholder="******" type="password">
+                                    <input class="form-control" placeholder="******" type="password" id="password-box">
                                 </div> <!-- form-group// -->
                                 <div class="row">
                                     <div class="col-md-3"></div>
                                     <div class="col-md-6">
                                         <div class="form-group text-center">
-                                            <button type="submit" class="btn btn-primary btn-block"> Login  </button>
+                                            <button type="submit" class="btn btn-primary btn-block" id="login-button"> Login  </button>
                                         </div> <!-- form-group// -->
                                     </div>
                                     <div class="col-md-3"></div>
                                 </div> <!-- .row// -->
-                            }
                         </article>
                     </div> <!-- card.// -->
 

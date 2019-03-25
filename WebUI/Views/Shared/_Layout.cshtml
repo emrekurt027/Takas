@@ -54,8 +54,8 @@
 
                     @if (true)
                     {
-                        <li><a href="#"><span class="glyphicon glyphicon-user"></span>Register</a></li>
-                        <li><a href="#"  id="SignButton"><span class="glyphicon glyphicon-log-in"></span>Login</a></li>
+                        <li><a href="/Account/Register"><span class="glyphicon glyphicon-user"></span>Register</a></li>
+                        <li><a href="#" id="SignButton"><span class="glyphicon glyphicon-log-in"></span>Login</a></li>
                     }
                     else
                     {
@@ -87,6 +87,8 @@
         <footer></footer>
     </div>
     <script src="~/Scripts/Site.js"></script>
+    <script src="~/Scripts/myapp.js"></script>
+
     @RenderSection("scripts", required: false)
 </body>
 </html>

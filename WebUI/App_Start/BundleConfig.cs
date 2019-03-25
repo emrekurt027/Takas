@@ -23,7 +23,6 @@ namespace WebUI
                       "~/Scripts/bootstrap.bundle.js"));
 
             bundles.Add(new ScriptBundle("~/bundles/app").Include(
-                      "~/Scripts/knockout-{version}.js",
                       "~/Scripts/myapp.js"));
 
             bundles.Add(new StyleBundle("~/Content/css").Include(

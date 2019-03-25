@@ -13,7 +13,7 @@
             @Html.AntiForgeryToken()
             @Html.ValidationSummary(true, "", new { @class = "text-danger" })
             <br />
-            <label for="exampleInputEmail1">Name</label>
+            <label for="exampleInputEmail1">UserName</label>
             @Html.TextBoxFor(p => p.UserName, new { @class = "form-control", @placeholder = "Enter Name" })
             <label class="text-danger text-center">  @Html.ValidationMessageFor(p => p.UserName)</label>
         </div>
@@ -28,16 +28,16 @@
             <label class="text-danger text-center">  @Html.ValidationMessageFor(p => p.Password)</label>
         </div>
         <div class="form-group">
-            <label for="exampleInputPassword1">Password</label>
+            <label for="exampleInputPassword1">Confirm Password</label>
             @Html.TextBoxFor(p => p.ConfirmPassword, new { @class = "form-control", @placeholder = "*******", @type = "password" })
             <label class="text-danger text-center">  @Html.ValidationMessageFor(p => p.ConfirmPassword)</label>
         </div>
+        <div class="form-group">
+            <label for="exampleInputPassword1">BirthDate</label>
+            @Html.TextBoxFor(p => p.BirthDate, new { @class = "form-control" })
+            <label class="text-danger text-center">  @Html.ValidationMessageFor(p => p.BirthDate)</label>
+        </div>
         <div class="row">
-            <div class="form-group">
-                <label for="exampleInputPassword1">Password</label>
-                @Html.TextBoxFor(p => p.BirthDate, new { @class = "form-control", @placeholder = "*******", @type = "password" })
-                <label class="text-danger text-center">  @Html.ValidationMessageFor(p => p.BirthDate)</label>
-            </div>
             <div class="row">
                 <div class="col-md-4"></div>
                 <div class="col-md-4">

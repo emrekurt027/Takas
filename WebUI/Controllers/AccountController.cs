@@ -23,18 +23,15 @@ namespace WebUI.Controllers
             ////grant_type=password&username=Alice&password=password123
             ////"grant_type=password&username="+user.UserName+"&password="+user.Password
 
-            //var dict = new Dictionary<string, string>();
-            //dict.Add("grant_type", "password");
-            //dict.Add("username", user.UserName);
-            //dict.Add("password", user.Password);
-            //var req = new HttpRequestMessage(HttpMethod.Post, "/Token") { Content = new FormUrlEncodedContent(dict) };
-            //var result = await MvcApplication.httpClient.SendAsync(req);
-            //if (result.IsSuccessStatusCode)
-            //{
-            //    return RedirectToAction("Index", "Home");
-            //}
+            var dict = new Dictionary<string, string>();
+            dict.Add("grant_type", "password");
+            dict.Add("username", user.UserName);
+            dict.Add("password", user.Password);
+            var req = new HttpRequestMessage(HttpMethod.Post, "/Token") { Content = new FormUrlEncodedContent(dict) };
+            var response = await MvcApplication.httpClient.SendAsync(req);
+            var contents = await response.Content.ReadAsStringAsync();
 
-            return PartialView("_LoginPopUp");
+            return Json(contents);
         }
         [HttpGet]
         public ActionResult Register()

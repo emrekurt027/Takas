@@ -6,21 +6,27 @@
     $(document).on('click', '#login-button', function () {
         console.log("LOGINSTART");
         var loginData = {
-            grant_type: 'password',
-            username: $('#email-box').val(),
-            password: $('#password-box').val()
+            UserName: $('#email-box').val(),
+            Password: $('#password-box').val()
         };
 
         $.ajax({
             type: 'POST',
-            url: apiUrl + '/Token',
+            url: '/Account/Login',
             data: loginData
-        }).done(function (data) {
+        }).done(function (jsonData) {
             console.log("YEP LOGIN");
-            self.user(data.userName);
+            var data = JSON.parse(jsonData);
+            if (data.error) {
+                console.log(data.error_description);
+                return;
+            }
+
             sessionStorage.setItem(tokenKeyName, data.access_token);
+            location.reload();
+
         }).fail(function (err) {
-            console.log("WHAT DA HELL LOGIN");
+            console.log("ERROR LOGIN");
         });
     })
 

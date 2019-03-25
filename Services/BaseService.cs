@@ -20,7 +20,13 @@ namespace Services
                 return await context.Set<T>().ToListAsync();
             }
         }
-
+        public async Task<List<T>> GetDataCount(int Count)
+        {
+            using (context = new MyDbContext())
+            {
+                return await context.Set<T>().Take(Count).ToListAsync();
+            }
+        }
         public async Task<T> GetById(int id)
         {
             using (context = new MyDbContext())

@@ -28,6 +28,11 @@ namespace WebApiService.Controllers
            return await _productService.GetAll();
         }
 
+        [Route("GetDataForSlider")]
+        public async Task<List<Product>> GetDataForSlider(int Count)
+        {
+            return await _productService.GetDataCount(Count);
+        }
         [Route("GetDataById")]
         public async Task<IHttpActionResult> GetDataById(int id)
         {

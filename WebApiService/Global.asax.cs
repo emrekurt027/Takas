@@ -37,6 +37,9 @@ namespace WebApiService
             builder.RegisterType<ProductController>().InstancePerRequest();
             builder.RegisterType<BaseService<Common.Domains.Product>>().InstancePerRequest();
             builder.RegisterType<ProductService>().InstancePerRequest();
+            builder.RegisterType<OrderController>().InstancePerRequest();
+            builder.RegisterType<BaseService<Common.Domains.Order>>().InstancePerRequest();
+            builder.RegisterType<OrderService>().InstancePerRequest();
             var container = builder.Build();
             GlobalConfiguration.Configuration.DependencyResolver = new AutofacWebApiDependencyResolver(container);
 

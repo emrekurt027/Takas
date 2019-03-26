@@ -10,8 +10,9 @@ namespace Common.Domains
 {
     public class Product : BaseEntity
     {
+        
         public int AuthorId { get; set; }
-
+        
         public string UserId { get; set; }     
 
         [Required(ErrorMessage = "Name cannot be empty..")]
@@ -24,6 +25,11 @@ namespace Common.Domains
         public bool Verify { get; set; }
 
         public string ImageUrl { get; set; }
+
+        public virtual ICollection<Category> Categories { get; set; }
+
+        public virtual Author Author { get; set; }
+
     }
 
 }

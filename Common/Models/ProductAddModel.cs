@@ -6,13 +6,8 @@ using System.Threading.Tasks;
 
 namespace Common.Models
 {
-    public class ProductAddModel
+    public class ProductAddModel:Domains.Product
     {
-        public int AuthorId { get; set; }
-        public int PictureId { get; set; }
-        public int UserId { get; set; }
-        public string Name { get; set; }
-        public string Description { get; set; }
-        public bool Verify { get; set; }
+        
     }
 }

@@ -61,6 +61,7 @@
   <ItemGroup>
     <Compile Include="BaseService.cs" />
     <Compile Include="DomainServices\AuthorService.cs" />
+    <Compile Include="DomainServices\OrderService.cs" />
     <Compile Include="DomainServices\ProductService.cs" />
     <Compile Include="DomainServices\CategoryService.cs" />
     <Compile Include="GoodReadsService\GetBooks.cs" />

@@ -1,8 +1,5 @@
 ﻿$(function () {
 
-    var tokenKeyName = "accessToken";
-    var apiUrl = "http://localhost:2252"
-
     $(document).on('click', '#login-button', function () {
         console.log("LOGINSTART");
         var loginData = {
@@ -22,7 +19,6 @@
                 return;
             }
 
-            sessionStorage.setItem(tokenKeyName, data.access_token);
             location.reload();
 
         }).fail(function (err) {

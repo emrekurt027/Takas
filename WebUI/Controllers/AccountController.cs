@@ -1,4 +1,5 @@
 ﻿using Common.Models;
+using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -31,7 +32,21 @@ namespace WebUI.Controllers
             var response = await MvcApplication.httpClient.SendAsync(req);
             var contents = await response.Content.ReadAsStringAsync();
 
-            return Json(contents);
+
+            //access_token, token_type, expires_in, userName, .issued, .expires
+            JObject jdata = JObject.Parse(contents);
+
+            // {{"error": "invalid_grant","error_description": "The user name or password is incorrect."}}
+            if (jdata.ContainsKey("error"))
+            {
+                return Json(contents);
+            }
+
+            HttpCookie kuki = new HttpCookie("accessToken", (string)jdata["access_token"]);
+            kuki.Expires = DateTime.Now.AddSeconds(Convert.ToDouble((string)jdata["expires_in"]));
+            Response.Cookies.Add(kuki);
+
+            return Json("{}");
         }
         [HttpGet]
         public ActionResult Register()

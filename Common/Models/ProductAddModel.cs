@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Common.Models
 {
-    public class ProductAddModel:Domains.Product
+    public class ProductAddModel
     {
         
     }

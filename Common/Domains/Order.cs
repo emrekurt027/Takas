@@ -10,7 +10,9 @@ namespace Common.Domains
 {
     public class Order: BaseEntity
     {
-        //gelen giden
+        /// <summary>
+        /// ürün giris/cikis
+        /// </summary>
         public bool State { get; set; }
 
         public string UserId { get; set; }

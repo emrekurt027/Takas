@@ -20,13 +20,13 @@ namespace WebUI.Controllers
 
         public async Task<ActionResult> Details(int id=0)
         {
-            /*var response = await MvcApplication.httpClient.GetAsync("api/Product/GetProductDetails?id=" + id);
-            if(response.IsSuccessStatusCode)
+            var response = await MvcApplication.httpClient.GetAsync("api/Product/GetProductDetails?id=" + id );
+            if (response.IsSuccessStatusCode)
             {
                 var product = await response.Content.ReadAsAsync<ProductShowModel>();
                 return View(product);
             }
-            */
+
             return View();
         }
     }

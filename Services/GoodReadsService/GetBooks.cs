@@ -17,6 +17,9 @@ namespace Services.GoodReadsService
         // GET: Home
         public async Task IndexAsync(string booksName)
         {
+            //https://www.goodreads.com/search/index.xml?key=Axm8msC1oG3ZqXyqlO5Ng&q=harry&search%5Bfield%5D=title
+
+
             // Create an unauthorized Goodreads client.
             var client = GoodreadsClient.Create(apiKey, apiSecret);
 

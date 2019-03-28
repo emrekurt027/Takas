@@ -10,7 +10,7 @@ namespace Common.Domains
 {
     public class Product : BaseEntity
     {
-        
+        [ForeignKey("Author")]
         public int AuthorId { get; set; }
         
         public string UserId { get; set; }     

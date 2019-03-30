@@ -9,19 +9,20 @@ namespace Common.Models
 {
     public class ProductAddModel
     {
-        public int AuthorId { get; set; }
+        [Required(ErrorMessage = "Name cannot be empty..")]
+        public string Name { get; set; }
+
+        [Required(ErrorMessage = "Notes cannot be empty..")]
+        public string Notes { get; set; }
 
         public string UserId { get; set; }
 
-        [Required(ErrorMessage = "Name cannot be empty..")]
-        [MaxLength(100)]
-        public string Name { get; set; }
+        public string AuthorName { get; set; }
 
-        [Required(ErrorMessage = "Description cannot be empty..")]
         public string Description { get; set; }
 
-        public bool Verify { get; set; }
-
         public string ImageUrl { get; set; }
+
+        public string Categories { get; set; }
     }
 }

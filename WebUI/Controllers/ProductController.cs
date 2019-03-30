@@ -29,5 +29,29 @@ namespace WebUI.Controllers
 
             return View();
         }
+
+        [HttpGet]
+        public ActionResult AddNew()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public async Task<ActionResult> AddNew(ProductAddModel model)
+        {
+            if (!ModelState.IsValid)
+            {
+                return View(model);
+            }
+            
+            var response = await MvcApplication.httpClient.PostAsJsonAsync("api/Product/AddNewData", model);
+            
+            if (response.IsSuccessStatusCode)
+            {
+                return RedirectToAction("Index", "Home");
+            }
+
+            return View(model);
+        }
     }
 }

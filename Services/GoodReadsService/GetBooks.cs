@@ -63,7 +63,6 @@ namespace Services.GoodReadsService
                 await _categoryService.Add(categories);
 
             }
-            int x = 15;
            
         }
     }

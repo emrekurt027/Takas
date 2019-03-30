@@ -24,115 +24,56 @@
         }).fail(function (err) {
             console.log("ERROR LOGIN");
         });
-    })
+    });
 
+    const googleApiKey = "AIzaSyBa7OgoT4bsgFx55phsuNjLptOU8ELvAUo";
 
+    $('#booksAutoComplete').autocomplete({
+        source: function (request, response) {
+            $.ajax({
+                url: "https://www.googleapis.com/books/v1/volumes",
+                type: "GET",
+                data: {
+                    q: request.term,
+                    maxResults: 10,
+                    fields: "items(id,volumeInfo(title))",
+                    key: googleApiKey
+                }
+            }).done(function (data) {
+                var titleList = data.items.map(item => {
+                    return { label: item.volumeInfo.title, value: item.volumeInfo.title, id:item.id}
+                });
+                console.log("yep google api books");
+                response(titleList);
+            }).fail(function (data) {
+                console.log("error google api books");
+            });
+        },
+        minLength:3,
+        select: function (event, ui) {
+
+            $.ajax({
+                url: "https://www.googleapis.com/books/v1/volumes/"+ui.item.id,
+                type: "GET",
+                data: {
+                    fields: "volumeInfo(authors,categories,description,imageLinks,title)",
+                    key: googleApiKey
+                }
+            }).done(function (data) {
+                console.log(data);
+                let bookInfo = data.volumeInfo;
+                $('#userId').val("1");//todo: kullanıcı id'si elle veriliyor şimdilik, düzeltilecek.
+                $('#authorName').val(bookInfo.authors[0]);
+                //gelen açıklamada html kodları da oluyor, çıkarılmazsa post işleminde hata alınıyor, replace işlemi bunun için var.
+                $('#description').val(bookInfo.description.replace(/(<([^>]+)>)/ig, ""));
+                $('#imageUrl').val(bookInfo.imageLinks.thumbnail);
+                $('#categories').val(bookInfo.categories.join(','));
+
+            }).fail(function (data) {
+                console.log("error google api books : get by book id");
+            });
+
+        }
+    });
 
 });
-
-//function ViewModel() {
-
-//    var self = this;
-
-//    var tokenKeyName = "accessToken";
-
-//    self.result = ko.observable();
-//    self.user = ko.observable();
-
-//    self.registerEmail = ko.observable();
-//    self.registerPassword = ko.observable();
-//    self.registerPassword2 = ko.observable();
-
-//    self.loginEmail = ko.observable();
-//    self.loginPassword = ko.observable();
-//    self.errors = ko.observableArray([]);
-
-//    self.callApi = function () {
-
-//        var token = sessionStorage.getItem(tokenKeyName);
-//        var headers = {};
-//        if (token) {
-//            headers.Authorization = 'Bearer ' + token;
-//        }
-
-//        $.ajax({
-//            type: 'GET',
-//            url: '/api/values',
-//            headers: headers
-//        }).done(function (data) {
-//            console.log("YEP CALLAPI");
-//            console.log(data);
-//        }).fail(function (err) {
-//            console.log("WHAT DA HELL CALLAPI");
-//        })
-//    }
-
-//    self.register = function () {
-
-//        var data = {
-//            Email: self.registerEmail(),
-//            Password: self.registerPassword(),
-//            ConfirmPassword: self.registerPassword2()
-//        };
-
-//        $.ajax({
-//            type: 'POST',
-//            url: '/api/Account/Register',
-//            contentType: "application/json",
-//            data: JSON.stringify(data)
-//        }).done(function (data) {
-//            console.log("YEP REGISTER");
-//            self.user(data.userName);
-//            sessionStorage.setItem(tokenKeyName, data.access_token);
-//        }).fail(function (err) {
-//            console.log("WHAT DA HELL REGISTER");
-//        });
-
-//    }
-
-//    self.login = function () {
-//        console.log("LOGINSTART");
-//        var loginData = {
-//            grant_type: 'password',
-//            username: self.loginEmail(),
-//            password: self.loginPassword()
-//        };
-
-//        $.ajax({
-//            type: 'POST',
-//            url: '/Token',
-//            data: loginData
-//        }).done(function (data) {
-//            console.log("YEP LOGIN");
-//            self.user(data.userName);
-//            sessionStorage.setItem(tokenKeyName, data.access_token);
-//        }).fail(function (err) {
-//            console.log("WHAT DA HELL LOGIN");
-//        });
-
-//    }
-
-//    self.logout = function () {
-
-//        var token = sessionStorage.getItem(tokenKeyName);
-//        var headers = {};
-//        if (token) {
-//            headers.Authorization = 'Bearer ' + token;
-//        }
-
-//        $.ajax({
-//            type: 'POST',
-//            url: '/api/Account/Logout',
-//            headers: headers
-//        }).done(function (data) {
-//            console.log("YEP LOGOUT");
-//            self.user('');
-//            sessionStorage.removeItem(tokenKeyName);
-//        }).fail(function (err) {
-//            console.log("WHAT DA HELL LOGOUT");
-//        })
-//    }
-//}
-
-//var app = new ViewModel();
-//ko.applyBindings(app);

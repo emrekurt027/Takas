@@ -22,6 +22,8 @@ namespace Common.Domains
         [Required(ErrorMessage = "Description cannot be empty..")]
         public string Description { get; set; }
 
+        public string Notes { get; set; }
+
         public bool Verify { get; set; }
 
         public string ImageUrl { get; set; }

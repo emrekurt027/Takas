@@ -1,0 +1,52 @@
+﻿@model Common.Models.ProductAddModel
+@{
+    ViewBag.Title = "AddNew";
+}
+
+<style>
+    .form-group input, textarea {
+        max-width: 100%;
+    }
+
+    .bookname-container {
+        position: relative;
+    }
+
+    .bookname-helper {
+        z-index: 10;
+        position: absolute;
+        width: 100%;
+        display: none;
+    }
+</style>
+
+
+<h2 class="mt-4">Add New Book</h2>
+<div>
+    @using (Html.BeginForm("AddNew", "Product", FormMethod.Post, new { @class = "form-group" }))
+    {
+        <div class="row">
+            <div class="col">
+                <label>Book Name</label>
+                @Html.TextBoxFor(p => p.Name, new { @class = "form-control", @id = "booksAutoComplete", @autocomplete = "off" })
+                <label>Notes</label>
+                @Html.TextAreaFor(p => p.Notes, new { @class = "form-control", @rows = "6" })
+                <br />
+                <button class="btn btn-danger", type="submit">Add Book</button>
+            </div>
+
+            <div class="col">
+                <label>UserId</label>
+                @Html.TextBoxFor(p => p.UserId, new { @class = "form-control", @id = "userId", @readonly = "true" })
+                <label>AuthorName</label>
+                @Html.TextBoxFor(p => p.AuthorName, new { @class = "form-control", @id = "authorName", @readonly = "true" })
+                <label>Description</label>
+                @Html.TextAreaFor(p => p.Description, new { @class = "form-control", @id = "description", @readonly = "true" })
+                <label>ImageUrl</label>
+                @Html.TextBoxFor(p => p.ImageUrl, new { @class = "form-control", @id = "imageUrl", @readonly = "true" })
+                <label>Categories</label>
+                @Html.TextBoxFor(p => p.Categories, new { @class = "form-control", @id = "categories", @readonly = "true" })
+            </div>
+        </div>
+    }
+</div>

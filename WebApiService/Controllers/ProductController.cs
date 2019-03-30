@@ -52,11 +52,11 @@ namespace WebApiService.Controllers
         //Product nesenesini veri tabanına ekler
         [HttpPost]
         [Route("AddNewData")]
-        public async Task<IHttpActionResult> AddNewData(Product product)
+        public async Task<IHttpActionResult> AddNewData(ProductAddModel productModel)
         {
             try
             {
-                await _productService.Add(product);
+                await _productService.AddNewProduct(productModel);
                 return Ok();
             }
             catch (Exception e)

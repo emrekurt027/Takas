@@ -22,12 +22,20 @@ namespace WebApiService.Controllers
             _productService = productService;
         }
 
-         
+
         //Tüm ürünleri getirir
         [Route("GetData")]
-        public async Task<List<Product>> GetData()
-        {            
-           return await _productService.GetAll();
+        public IHttpActionResult GetDataAsync()
+        {
+            try
+            {
+                var productList = _productService.GetAllForProductsIndex();
+                return Ok(productList);
+            }
+            catch (Exception e)
+            {
+                return Content(HttpStatusCode.InternalServerError, e.Message);
+            }
         }
 
         //verilen sayıda ürünü getirir

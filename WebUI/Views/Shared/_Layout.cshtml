@@ -1,98 +1,82 @@
 ﻿<!DOCTYPE html>
 <html>
 <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>@ViewBag.Title -TAKAS</title>
+    <meta charset="UTF-8">
+    <title>Book Store</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#03a6f3">
+
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:200,300,400,500,600,700,800,900" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    <link href="~/css/bootstrap.min.css" rel="stylesheet" />
+
+    <link href="~/css/styles.css" rel="stylesheet" />
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")
     @Scripts.Render("~/bundles/modernizr")
-    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
-
 </head>
 <body>
-    <div id="menu" class="fixed-top">
-        <nav class="navbar navbar-expand-lg navbar-dark bg-dark static-top">
+    <header>
+
+        <div class="main-menu">
             <div class="container">
-
-                <a class="navbar-brand" href="/">
-                    MALIBU
-                </a>
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-
-                <div id="searchWrapperContent" class="justify-content-center col col-lg-8">
-                    <div class="u-relative">
-                        <div id="searchWrapper">
-                            <div class="u-relative">
-                                <input maxlength="100" type="text" placeholder="Search">
-                                <a href="javascript:void(0)" class="search-icon">
-                                    <span class="glyphicon glyphicon-search"></span>
-                                    <i class="icon icon-search"></i>
-                                </a>
-                            </div>
-                        </div>
+                <nav class="navbar navbar-expand-lg navbar-light">
+                    <a class="navbar-brand"><img src="/images/logo.png" alt="logo"></a>
+                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                        <ul class="navbar-nav ml-auto">
+                            <li class="navbar-item active">
+                                <a href="@Url.Action("Index", "Home")" class="nav-link">Home</a>
+                            </li>
+                            <li class="navbar-item">
+                                <a href="@Url.Action("Index", "Product")" class="nav-link">Products</a>
+                            </li>
+                            <li class="navbar-item">
+                                <a href="#" class="nav-link">About</a>
+                            </li>
+                            <li class="navbar-item">
+                                <a href="#" class="nav-link">Contact</a>
+                            </li>
+                            <li class="navbar-item">
+                                <a href="#" class="nav-link">Login</a>
+                            </li>
+                        </ul>
+                        @*<div class="cart my-2 my-lg-0">
+                                <span>
+                                    <i class="fa fa-shopping-cart" aria-hidden="true"></i>BURAYA LOGIN ICONU FALAN GELCEK
+                                </span>
+                                <span class="quntity">3</span>
+                            </div>*@
+                        <form class="form-inline my-2 my-lg-0">
+                            <input class="form-control mr-sm-2" type="search" placeholder="Search here..." aria-label="Search">
+                            <span class="fa fa-search"></span>
+                        </form>
                     </div>
-                </div>
-
+                </nav>
             </div>
+        </div>
+    </header>
 
 
 
-
-            <div class="collapse navbar-collapse" id="navbarResponsive">
-                <ul class="navbar-nav ml-auto">
-                    <li class="nav-item active">
-                        <a class="nav-link" href=@Url.Action("Index", "Home")>Home<span class="sr-only">(current)</span></a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href=@Url.Action("About", "Home")>About</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href=@Url.Action("Contact", "Home")>Contact</a>
-                    </li>
-
-                    @if (true)
-                    {
-                        <li><a href="/Account/Register"><span class="glyphicon glyphicon-user"></span>Register</a></li>
-                        <li><a href="#" id="SignButton"><span class="glyphicon glyphicon-log-in"></span>Login</a></li>
-                    }
-                    else
-                    {
-                        <li class="nav-item">
-                            <div class="dropdown">
-                                <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                    Profile
-                                </button>
-                                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                                    <a class="dropdown-item" href="#">Sent Books</a>
-                                    <a class="dropdown-item" href="#">Recieved Orders</a>
-                                    <a class="dropdown-item" href="#">Not Approved Orders</a>
-                                    <a class="dropdown-item" href="#">Settings</a>
-                                    <a class="dropdown-item" href="#">Log Out</a>
-                                </div>
-                            </div>
-                        </li>
-                    }
-                </ul>
-            </div>
-
-        </nav>
-    </div>
-
-
-
-    <div class="container body-content mt-4">
+    <div class="container body-content">
         @RenderBody()
 
-        <footer></footer>
+        
     </div>
 
+    <script src="~/js/bootstrap.min.js"></script>
+    <script src="~/js/jquery.min.js"></script>
     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+
     <script src="~/Scripts/Site.js"></script>
     <script src="~/Scripts/myapp.js"></script>
+
+
     @RenderSection("scripts", required: false)
 </body>
 </html>

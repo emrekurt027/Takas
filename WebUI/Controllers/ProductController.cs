@@ -13,11 +13,17 @@ namespace WebUI.Controllers
     public class ProductController : Controller
     {
         // GET: Product
-        public ActionResult Index()
+        public async Task<ActionResult> Index()
         {
+            var response = await MvcApplication.httpClient.GetAsync("api/Product/GetData");
+            if (response.IsSuccessStatusCode)
+            {
+                List<ProductShowModel> jResult = response.Content.ReadAsAsync<List<ProductShowModel>>().Result;
+                return View(jResult);
+            }
+
             return View();
         }
-
         public async Task<ActionResult> Details(int id=0)
         {
             var response = await MvcApplication.httpClient.GetAsync("api/Product/GetProductDetails?id=" + id );

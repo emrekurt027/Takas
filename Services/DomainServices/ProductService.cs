@@ -20,6 +20,17 @@ namespace Services.DomainServices
             }
         }
 
+        public List<ProductShowModel> GetAllForProductsIndex()
+        {
+            using (context = new MyDbContext())
+            {
+                return context.Products.Select(p => new ProductShowModel()
+                {
+                    Name = p.Name,
+                    Images = p.ImageUrl
+                }).ToList();
+            }
+        }
         public async Task<ProductShowModel> GetProductDetails(int id)
         {
             using (context = new MyDbContext())

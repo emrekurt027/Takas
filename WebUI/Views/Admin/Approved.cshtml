@@ -1,0 +1,75 @@
+﻿@*@model List<Common.Models.OrderShowModel>*@
+@{
+
+                ViewBag.Title = "Index";
+                Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<script src="~/Scripts/main.js"></script>
+<link href="~/Content/main.css" rel="stylesheet" />
+<html>
+<body>
+    <h2 style="position:relative; top:25px; text-align:center; color:dimgrey">Onaylanmis Kitaplar</h2>
+    <div class="outer">
+        <div class="in-tablecover col col-lg-8" style="margin-top:50px; left:20%">
+            <div class="header"><h3 style=" color:dimgrey">Gelen Kitaplar</h3> </div>
+            <table class="table">
+                <thead class="thead-dark">
+                    <tr>
+                        <th scope="col">ID</th>
+                        <th scope="col">Kitap</th>
+                        <th scope="col">Kullanici</th>
+                        <th scope="col">Tarih</th>
+                        <th> </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @*@foreach (var item in Model)
+                        {
+                            if (item.State == true)
+                            {*@
+                    <tr>
+                        <th scope="row">item.OrderID</th>
+                        <td>item.ProductName</td>
+                        <td>item.UserName</td>
+                        <td>item.Date</td>
+                        <td>@Html.ActionLink("Sil", "CancelOrder", "Admin"@*,new { @orderId= item.OrderID },null*@)</td>
+                    </tr>
+                    @*}
+                        }*@
+                </tbody>
+            </table>
+        </div>
+
+        <div class="out-tablecover col col-lg-8" style="margin-top:50px; left:20%">
+            <div class="header"> <h3 style=" color:dimgrey">Giden Kitaplar</h3> </div>
+            <table class="table">
+                <thead class="thead-dark">
+                    <tr>
+                        <th scope="col">ID</th>
+                        <th scope="col">Kitap</th>
+                        <th scope="col">Kullanici</th>
+                        <th scope="col">Tarih</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @*@foreach (var item in Model)
+                        {
+                            if (item.State == false)
+                            {*@
+                    <tr>
+                        <th scope="row">item.OrderID</th>
+                        <td>item.ProductName</td>
+                        <td>item.UserName</td>
+                        <td>item.Date</td>
+                    </tr>
+                    @*}
+                        }*@
+                </tbody>
+            </table>
+            @Html.ActionLink("< Geri", "Index", "Admin")
+        </div>
+
+    </div>
+</body>
+</html>
+

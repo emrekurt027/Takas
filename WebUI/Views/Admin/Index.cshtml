@@ -1,0 +1,26 @@
+﻿
+@{
+                ViewBag.Title = "Index";
+                Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<script src="~/Scripts/main.js"></script>
+<link href="~/Content/main.css" rel="stylesheet" />
+<body>
+    <div style="position: relative; height: 250px;">
+        <div class="header" style="position:relative; top:50px; width:50%; left:25%">
+            <button type="button" class="btn btn-primary btn-lg btn-block" style="background-color:indianred">
+                @Html.ActionLink("Onay Bekleyen Kitaplar", "WillApprove", "Admin", null, new { style = "color:whitesmoke" })
+            </button>
+            <button type="button" class="btn btn-secondary btn-lg btn-block" style="background-color:limegreen">
+                @Html.ActionLink("Onaylanmis Kitaplar", "Approved", "Admin", null, new { style = "color:whitesmoke" })
+            </button>
+            <button type="button" class="btn btn-secondary btn-lg btn-block" style="background-color:darkblue">
+                @Html.ActionLink("Istatistikler", "Stats", "Admin", null, new { style = "color:whitesmoke" })
+            </button>
+        </div>
+    </div>
+</body>
+
+
+

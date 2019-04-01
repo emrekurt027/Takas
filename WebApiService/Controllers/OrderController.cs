@@ -23,14 +23,14 @@ namespace WebApiService.Controllers
         public List<OrderShowModel> GetOrders(bool State,bool Check)
         {
             return  _orderService.GetOrdersByStateAndChecked(State,Check);
-        }        
+        }
 
         [Route("GetOrderByChecked")]
-        public async Task<IHttpActionResult> GetOrderByChecked(bool check)
+        public IHttpActionResult GetOrderByChecked(bool check)
         {
             try
             {
-                var orderList = await _orderService.GetOrderByChecked(check);
+                var orderList = _orderService.GetOrderByChecked(check);
                 return Ok(orderList);
             }
             catch (Exception e)

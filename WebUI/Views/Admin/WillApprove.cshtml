@@ -1,8 +1,5 @@
-﻿@*@model List<Common.Models.OrderShowModel>*@
+﻿@model List<Common.Models.OrderShowModel>
 @{
-                /**/
-
-                /**/
 
                 ViewBag.Title = "Index";
                 Layout = "~/Views/Shared/_Layout.cshtml";
@@ -27,20 +24,20 @@
                     </tr>
                 </thead>
                 <tbody>
-                    @*@foreach (var item in Model)
+                    @foreach (var item in Model)
+                    {
+                        if (item.State == true)
                         {
-                            if (item.State == true)
-                            {*@
                     <tr>
-                        <th scope="row">item.OrderID</th>
-                        <td>item.ProductName</td>
-                        <td>item.UserName</td>
-                        <td>item.Date</td>
+                        <th scope="row">@item.OrderID</th>
+                        <td>@item.ProductName</td>
+                        <td>@item.UserName</td>
+                        <td>@item.Date</td>
                         <td>@Html.ActionLink("Onayla", "VerifyOrder", "Admin"@*,new { @orderId= item.OrderID },null*@)</td>
                         <td>@Html.ActionLink("Sil", "CancelOrder", "Admin"@*,new { @orderId= item.OrderID },null*@)</td>
                     </tr>
-                    @*}
-                        }*@
+                        }
+                    }
                 </tbody>
             </table>
         </div>
@@ -59,20 +56,20 @@
                     </tr>
                 </thead>
                 <tbody>
-                    @*@foreach (var item in Model)
+                    @foreach (var item in Model)
                         {
                             if (item.State == false)
-                            {*@
+                            {
                     <tr>
-                        <th scope="row">item.OrderID</th>
-                        <td>item.ProductName</td>
-                        <td>item.UserName</td>
-                        <td>item.Date</td>
+                        <th scope="row">@item.OrderID</th>
+                        <td>@item.ProductName</td>
+                        <td>@item.UserName</td>
+                        <td>@item.Date</td>
                         <td>@Html.ActionLink("Onayla", "VerifyOrder", "Admin"@*,new { @orderId= item.OrderID },null*@)</td>
                         <td>@Html.ActionLink("Sil", "CancelOrder", "Admin"@*,new { @orderId= item.OrderID },null*@)</td>
                     </tr>
-                    @*}
-                        }*@
+                    }
+                        }
                 </tbody>
             </table>
             @Html.ActionLink("< Geri", "Index", "Admin")

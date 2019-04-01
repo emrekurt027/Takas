@@ -14,5 +14,10 @@ namespace Common.Models
         public string ProductName { get; set; }
         public string ImageUrl { get; set; }
         public DateTime Date { get; set; }
+
+        public static implicit operator List<object>(OrderShowModel v)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

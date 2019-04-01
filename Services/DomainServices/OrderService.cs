@@ -14,11 +14,21 @@ namespace Services.DomainServices
     {
         //------------------------------------------------------------------------------------------------------------------
         //Admin İŞLEMLERİ   
-        public async Task<List<Order>> GetOrderByChecked(bool check)
+        public List<OrderShowModel> GetOrderByChecked(bool check)
         {
             using (context = new MyDbContext())
             {
-                return await context.Set<Order>().Where(p => p.CheckByAdmin == check).ToListAsync();
+                List<OrderShowModel> orders = context.Orders.Where(p => p.CheckByAdmin == check).Select(order => new OrderShowModel
+                {
+                    State = order.State,
+                    ProductName = order.Product.Name,
+                    Date = order.Date,
+                    ImageUrl = order.Product.ImageUrl,
+                    OrderID = order.Id,
+                    UserName = context.Users.Where(user => user.Id == order.UserId).FirstOrDefault().UserName
+                }).ToList();
+
+                return orders;
             }
         }
         //Admin tarafından order iptali icin hazırlandı.

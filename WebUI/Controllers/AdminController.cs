@@ -1,6 +1,9 @@
-﻿using System;
+﻿using Common.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net.Http;
+using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
 
@@ -70,19 +73,16 @@ namespace WebUI.Controllers
 
         //}
 
-
-        //public async Task<ActionResult> WillApprove(bool check=false)
-        //{
-
-        //    var response = await MvcApplication.httpClient.GetAsync("api/Order/...");
-        //    if (response.IsSuccessStatusCode)
-        //    {
-        //        var order = await response.Content.ReadAsAsync<OrderShowModel>();
-        //        return View(order);
-        //    }
-
-        //    return View();
-
-        //}
+        [HttpGet]
+        public async Task<ActionResult> WillApprove(bool check = false)
+        {
+            var response = await MvcApplication.httpClient.GetAsync("api/Order/GetOrderByChecked?check="+check);
+            if (response.IsSuccessStatusCode)
+            {
+                List<OrderShowModel> order = await response.Content.ReadAsAsync<List<OrderShowModel>>();
+                return View(order);
+            }
+            return View();
+        }
     }
 }

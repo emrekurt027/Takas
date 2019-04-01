@@ -20,7 +20,7 @@ namespace Services.DomainServices
             }
         }
 
-        public List<ProductShowModel> GetProductsForSlider(int limit)
+        public async Task<List<ProductShowModel>> GetRandomProducts(int limit)
         {
             using (context = new MyDbContext())
             {
@@ -30,10 +30,11 @@ namespace Services.DomainServices
                     count = limit;
                 }
 
-                return context.Products.OrderBy(r => Guid.NewGuid()).Take(count).Select(p => new ProductShowModel()
+                return await context.Products.OrderBy(r => Guid.NewGuid()).Take(count).Select(p => new ProductShowModel()
                 {
+                    Id = p.Id,
                     Images = p.ImageUrl
-                }).ToList();
+                }).ToListAsync();
             }
         }
 
@@ -43,6 +44,7 @@ namespace Services.DomainServices
             {
                 return context.Products.Select(p => new ProductShowModel()
                 {
+                    Id = p.Id,
                     Name = p.Name,
                     Images = p.ImageUrl
                 }).ToList();
@@ -54,11 +56,13 @@ namespace Services.DomainServices
             {
                 ProductShowModel Model = await context.Products.Where(p => p.Id == id).Select(product => new ProductShowModel()
                 {
+                    Id = product.Id,
                     Name = product.Name,
                     AuthorName = product.Author.Name,
                     Description = product.Description,
                     Images = product.ImageUrl,
                     UserName = context.Users.Where(u => u.Id == product.UserId).FirstOrDefault().UserName,
+                    Notes = product.Notes,
                     Categories = product.Categories.Select(c => c.Name).ToList()
                 }).FirstOrDefaultAsync();
                 return Model;

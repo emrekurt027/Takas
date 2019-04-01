@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Data.Entity;
 
 namespace Services.DomainServices
 {
@@ -13,11 +14,11 @@ namespace Services.DomainServices
     {
         //------------------------------------------------------------------------------------------------------------------
         //Admin İŞLEMLERİ   
-        public List<Order> GetOrderByChecked(bool check)
+        public async Task<List<Order>> GetOrderByChecked(bool check)
         {
             using (context = new MyDbContext())
             {
-                return context.Set<Order>().Where(p => p.CheckByAdmin == check).ToList();
+                return await context.Set<Order>().Where(p => p.CheckByAdmin == check).ToListAsync();
             }
         }
         //Admin tarafından order iptali icin hazırlandı.

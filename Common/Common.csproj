@@ -61,6 +61,7 @@
     <Compile Include="Interfaces\ICustomUser.cs" />
     <Compile Include="Models\OrderShowModel.cs" />
     <Compile Include="Models\ProductAddModel.cs" />
+    <Compile Include="Models\ProductDetailModel.cs" />
     <Compile Include="Models\ProductShowModel.cs" />
     <Compile Include="Models\UserLoginModel.cs" />
     <Compile Include="Models\UserRegisterModel.cs" />

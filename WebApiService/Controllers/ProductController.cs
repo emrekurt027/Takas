@@ -40,11 +40,11 @@ namespace WebApiService.Controllers
 
         //verilen sayıda ürünü getirir
         [Route("GetDataForSlider")]
-        public IHttpActionResult GetDataForSlider(int count)
+        public async Task<IHttpActionResult> GetDataForSliderAsync(int count)
         {
             try
             {
-                var productSlider = _productService.GetProductsForSlider(count);
+                var productSlider = await _productService.GetRandomProducts(count);
                 return Ok(productSlider);
             }
             catch (Exception e)
@@ -112,13 +112,27 @@ namespace WebApiService.Controllers
         }
 
 
-        [Route("GetProductDetails")]
+        [Route("GetDetails")]
         public async Task<IHttpActionResult> GetProductDetails(int id)
         {
             try
             {
-                var productDetail =await _productService.GetProductDetails(id);
-                return Ok(productDetail);
+                var product = await _productService.GetProductDetails(id);
+                var productRecommendedList = await _productService.GetRandomProducts(6);
+                //aynı ürün tavsiyelerde olmasın
+                var sameProduct = productRecommendedList.Find(p => p.Id == product.Id);
+                if (sameProduct != null)
+                    productRecommendedList.Remove(sameProduct);
+                else
+                    productRecommendedList.RemoveAt(1);
+
+
+                var productDetails = new ProductDetailModel
+                {
+                    Product = product,
+                    RecommendedList = productRecommendedList
+                };
+                return Ok(productDetails);
             }
             catch (Exception e)
             {

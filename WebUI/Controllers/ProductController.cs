@@ -25,12 +25,12 @@ namespace WebUI.Controllers
 
             return View();
         }
-        public async Task<ActionResult> Details(int id=0)
+        public async Task<ActionResult> Details(int id)
         {
-            var response = await MvcApplication.httpClient.GetAsync("api/Product/GetProductDetails?id=" + id );
+            var response = await MvcApplication.httpClient.GetAsync("api/Product/GetDetails?id=" + id );
             if (response.IsSuccessStatusCode)
             {
-                var product = await response.Content.ReadAsAsync<ProductShowModel>();
+                var product = await response.Content.ReadAsAsync<ProductDetailModel>();
                 return View(product);
             }
 

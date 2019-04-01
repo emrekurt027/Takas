@@ -65,6 +65,18 @@ namespace WebUI.Controllers
 
             return View(user);
         }
+
+        [HttpPost]
+        public ActionResult Logout()
+        {
+            if(Request.Cookies["accessToken"] != null)
+            {
+                Response.Cookies["accessToken"].Expires = DateTime.Now.AddDays(-1);
+            }
+
+            return RedirectToAction("Index", "Home");
+        }
+
         public ActionResult ForgotPassword()
         {
             return View();

@@ -1,4 +1,4 @@
-﻿
+﻿@model Common.Models.ProductDetailModel
 @{
     ViewBag.Title = "Details";
 }
@@ -9,12 +9,13 @@
         font-family: 'Open Sans', sans-serif;
     }
 
-   h2, h3 {
+    h2, h3 {
         font-family: 'Roboto Condensed', sans-serif;
     }
-        .recommendedBooksContianer img{
-            padding-bottom:10px;
-        }
+
+    .recommendedBooksContianer img {
+        padding-bottom: 10px;
+    }
 
     .genres-list {
         list-style: none;
@@ -26,6 +27,48 @@
         float:left;
     }
 
+
+    /*////////*/
+    .read-more-state {
+        display: none;
+    }
+
+    .read-more-target {
+        opacity: 0;
+        max-height: 0;
+        font-size: 0;
+        transition: .25s ease;
+    }
+
+    .read-more-state:checked ~ .read-more-wrap .read-more-target {
+        opacity: 1;
+        font-size: inherit;
+        max-height: 999em;
+    }
+
+    .read-more-state ~ .read-more-trigger:before {
+        content: 'Show more';
+    }
+
+    .read-more-state:checked ~ .read-more-trigger:before {
+        content: 'Show less';
+    }
+
+    .read-more-state:checked ~ .read-more-wrap .read-more-first {
+        opacity: 0;
+    }
+
+    .read-more-trigger {
+        cursor: pointer;
+        display: inline-block;
+        padding: 0 .5em;
+        color: red;
+        font-size: .9em;
+        line-height: 2;
+        border: 1px solid #ddd;
+        border-radius: .25em;
+    }
+
     </style>
 
 <link href="https://fonts.googleapis.com/css?family=Open+Sans|Roboto+Condensed" rel="stylesheet">
@@ -35,32 +78,33 @@
             <div class="row">
                 <div class="col-3 p-0">
                     <div class="d-flex flex-column align-items-center">
-                        <img style="width:221px; height:325px" />
+                        <img src="@Model.Product.Images" style="width:221px; height:325px" />
                     </div>
                 </div>
                 <div class="col-7 p-0 pl-3 ">
-                    <div><h2>Name of the Wind</h2></div>
+                    <div><h2>@Model.Product.Name</h2></div>
                     <hr />
                     <h5><span class="badge badge-primary">Book Owner: John Doe</span></h5>
                     
-                    <h5><span class="badge badge-primary">Author: Patrick Rothfuss</span></h5>
+                    <h5><span class="badge badge-primary">Author: @Model.Product.AuthorName</span></h5>
                     <div>
-                        <p>
-                            Told in Kvothe's own voice, this is the tale of the magically gifted young man who grows to be the most notorious wizard his world has ever seen.<br /><br />
+                        <input type="checkbox" class="read-more-state" id="post-1" />
+                        <p class="read-more-wrap">
 
-                            The intimate narrative of his childhood in a troupe of traveling players, his years spent as a near-feral orphan in a crime-ridden city, his daringly brazen yet successful bid to enter a legendary school of magic, and his life as a fugitive after the murder of a king form a gripping coming-of-age story unrivaled in recent literature.
-                            <br /><br />
-                            A high-action story written with a poet's hand, The Name of the Wind is a masterpiece that will transport readers into the body and mind of a wizard.
+                            @Model.Product.Description.Substring(0, 100)<span class="read-more-first">...</span><span class="read-more-target">
+                            @Model.Product.Description.Substring(100, Model.Product.Description.Length - 100)
+                            </span>
                         </p>
+                        <label for="post-1" class="read-more-trigger"></label>
                     </div>
                     <hr />
                     <div>
                         <h4>Genres</h4>
                         <ul class="genres-list">
-                            <li><h5><span class="badge badge-pill badge-danger">Fantasy</span></h5></li>
-                            <li><h5><span class="badge badge-pill badge-danger">Fiction</span></h5></li>
-                            <li><h5><span class="badge badge-pill badge-danger">Epic Fantasy</span></h5></li>
-                            <li><h5><span class="badge badge-pill badge-danger">Magic</span></h5></li>
+                            @foreach (var category in Model.Product.Categories)
+                            {
+                                <li><h5><span class="badge badge-pill badge-danger">@category</span></h5></li>
+                            }
                         </ul>
                     </div>
                 </div>
@@ -71,39 +115,19 @@
                 </div>
                 <div>
                     <p>
-                        Köpeğim de kitabı okumaya yeltendiğinde oluşan çiğnenme izleri haricinde kitap oldukça okunabilir durumdadır.
+                        @Model.Product.Notes
                     </p>
-                </div>
-            </div>
-            <div class="col">
-                <div>
-                    <h3>User Pictures</h3>
-                </div>
-                <div>
-                    <img style="width:87px; height:130px" />
-                    <img style="width:87px; height:130px" />
-                    <img style="width:87px; height:130px" />
-                    <img style="width:87px; height:130px" />
                 </div>
             </div>
         </div>
         <div class="col-3 pr-0">
             <div class="d-flex align-items-center flex-column recommendedBooksContianer text-center">
                 <h5>Recommended</h5>
-                <img style="width:87px; height:130px" />
-                <img style="width:87px; height:130px" />
-                <img style="width:87px; height:130px" />
-                <img style="width:87px; height:130px" />
-                <img style="width:87px; height:130px" />
+                @foreach (var item in Model.RecommendedList)
+                {
+                    <a href="/Product/Details/@item.Id"><img src="@item.Images" style="width:87px; height:130px" /></a>
+                }
             </div>
-            @*<div class="d-flex align-content-center flex-column recommendedBooksContianer text-center">
-                <h4>Genres</h4>
-                <ul class="genres-list">
-                    <li><h4><span class="badge badge-pill badge-secondary">Fantasy</span></h4></li>
-                    <li><h4><span class="badge badge-pill badge-secondary">Fiction</span></h4></li>
-                    <li><h4><span class="badge badge-pill badge-secondary">Epic Fantasy</span></h4></li>
-                    <li><h4><span class="badge badge-pill badge-secondary">Magic</span></h4></li>
-                </ul>
-            </div>*@
         </div>
     </div>
+

@@ -20,6 +20,23 @@ namespace Services.DomainServices
             }
         }
 
+        public List<ProductShowModel> GetProductsForSlider(int limit)
+        {
+            using (context = new MyDbContext())
+            {
+                int count = context.Products.Count();
+                if (count >= limit)
+                {
+                    count = limit;
+                }
+
+                return context.Products.OrderBy(r => Guid.NewGuid()).Take(count).Select(p => new ProductShowModel()
+                {
+                    Images = p.ImageUrl
+                }).ToList();
+            }
+        }
+
         public List<ProductShowModel> GetAllForProductsIndex()
         {
             using (context = new MyDbContext())

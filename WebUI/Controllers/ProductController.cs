@@ -19,6 +19,7 @@ namespace WebUI.Controllers
             if (response.IsSuccessStatusCode)
             {
                 List<ProductShowModel> jResult = response.Content.ReadAsAsync<List<ProductShowModel>>().Result;
+
                 return View(jResult);
             }
 

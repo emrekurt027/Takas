@@ -10,7 +10,6 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
     <link href="~/css/bootstrap.min.css" rel="stylesheet" />
-
     <link href="~/css/styles.css" rel="stylesheet" />
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/jquery")
@@ -23,7 +22,7 @@
         <div class="main-menu">
             <div class="container">
                 <nav class="navbar navbar-expand-lg navbar-light">
-                    <a class="navbar-brand"><img src="/images/logo.png" alt="logo"></a>
+                    <a class="navbar-brand" href="@Url.Action("Index", "Home")"><img src="/images/logo.png" alt="logo"></a>
                     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                         <span class="navbar-toggler-icon"></span>
                     </button>
@@ -41,16 +40,35 @@
                             <li class="navbar-item">
                                 <a href="#" class="nav-link">Contact</a>
                             </li>
-                            <li class="navbar-item">
-                                <a href="#" class="nav-link">Login</a>
-                            </li>
+                            @if (true)
+                            {
+                                <li class="navbar-item">
+                                    <a href="/Account/Register">Register</a>
+                                </li>
+                                <li class="navbar-item">
+                                    <a href="#" id="SignButton">Login</a>
+                                </li>
+                            }
+                            else
+                            {
+                                <li class="nav-item">
+                                    <div class="dropdown">
+                                        <a class=" nav-item dropdown-toggle" id="btnDropdownDemo" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                            Profile
+                                        </a>
+                                        <div class="dropdown-menu" aria-labelledby="btnDropdownDemo">
+                                            <a class="dropdown-item" href="#">Sent</a>
+                                            <a class="dropdown-item" href="#">My Orders</a>
+                                            <a class="dropdown-item" href="#">Settings</a>
+                                            <a class="dropdown-item" href="#">Log Out</a>
+                                        </div>
+                                    </div>
+
+                                </li>
+
+                            }
                         </ul>
-                        @*<div class="cart my-2 my-lg-0">
-                                <span>
-                                    <i class="fa fa-shopping-cart" aria-hidden="true"></i>BURAYA LOGIN ICONU FALAN GELCEK
-                                </span>
-                                <span class="quntity">3</span>
-                            </div>*@
+
                         <form class="form-inline my-2 my-lg-0">
                             <input class="form-control mr-sm-2" type="search" placeholder="Search here..." aria-label="Search">
                             <span class="fa fa-search"></span>
@@ -60,17 +78,43 @@
             </div>
         </div>
     </header>
-
-
+    
 
     <div class="container body-content">
         @RenderBody()
 
-        
+     
+        <footer>
+            <div class="copy-right">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <h5>(C) 2019. All Rights Reserved.</h5>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="share align-middle">
+                                <span class="fb"><i class="fa fa-facebook-official"></i></span>
+                                <span class="instagram"><i class="fa fa-instagram"></i></span>
+                                <span class="twitter"><i class="fa fa-twitter"></i></span>
+                                <span class="pinterest"><i class="fa fa-pinterest"></i></span>
+                                <span class="google"><i class="fa fa-google-plus"></i></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </footer>
+
+
     </div>
 
-    <script src="~/js/bootstrap.min.js"></script>
     <script src="~/js/jquery.min.js"></script>
+    <script src="~/js/bootstrap.min.js"></script>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.6/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.3/js/bootstrap.min.js"></script>
+
     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 
     <script src="~/Scripts/Site.js"></script>

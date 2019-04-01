@@ -40,9 +40,17 @@ namespace WebApiService.Controllers
 
         //verilen sayıda ürünü getirir
         [Route("GetDataForSlider")]
-        public async Task<List<Product>> GetDataForSlider(int Count)
+        public IHttpActionResult GetDataForSlider(int count)
         {
-            return await _productService.GetDataCount(Count);
+            try
+            {
+                var productSlider = _productService.GetProductsForSlider(count);
+                return Ok(productSlider);
+            }
+            catch (Exception e)
+            {
+                return Content(HttpStatusCode.InternalServerError, e.Message);
+            }
         }
 
         //belirtilen idye sahip ürün bilgisini getirir.

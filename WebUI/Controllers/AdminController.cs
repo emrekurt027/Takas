@@ -16,15 +16,30 @@ namespace WebUI.Controllers
         {
             return View();
         }
-        public ActionResult WillApprove()
+
+        public async Task<ActionResult> Approved()
         {
+
+            var response = await MvcApplication.httpClient.GetAsync("api/Order/GetOrderByChecked?check=true");
+            if (response.IsSuccessStatusCode)
+            {
+                List<OrderShowModel> order = await response.Content.ReadAsAsync<List<OrderShowModel>>();
+                return View(order);
+            }
 
             return View();
+
         }
 
-        public ActionResult Approved()
+        [HttpGet]
+        public async Task<ActionResult> WillApprove()
         {
-            //check=true
+            var response = await MvcApplication.httpClient.GetAsync("api/Order/GetOrderByChecked?check=false");
+            if (response.IsSuccessStatusCode)
+            {
+                List<OrderShowModel> order = await response.Content.ReadAsAsync<List<OrderShowModel>>();
+                return View(order);
+            }
             return View();
         }
 
@@ -58,31 +73,5 @@ namespace WebUI.Controllers
 
         //}
 
-
-        //public async Task<ActionResult> Approved(bool check=true)
-        //{
-
-        //    var response = await MvcApplication.httpClient.GetAsync("api/Order/...");
-        //    if (response.IsSuccessStatusCode)
-        //    {
-        //        var order = await response.Content.ReadAsAsync<OrderShowModel>();
-        //        return View(order);
-        //    }
-
-        //    return View();
-
-        //}
-
-        [HttpGet]
-        public async Task<ActionResult> WillApprove(bool check = false)
-        {
-            var response = await MvcApplication.httpClient.GetAsync("api/Order/GetOrderByChecked?check="+check);
-            if (response.IsSuccessStatusCode)
-            {
-                List<OrderShowModel> order = await response.Content.ReadAsAsync<List<OrderShowModel>>();
-                return View(order);
-            }
-            return View();
-        }
     }
 }

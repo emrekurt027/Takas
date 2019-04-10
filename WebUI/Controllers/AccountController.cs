@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net.Http;
+using System.Net.Http.Headers;
 using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
@@ -46,12 +47,16 @@ namespace WebUI.Controllers
             kuki.Expires = DateTime.Now.AddSeconds(Convert.ToDouble((string)jdata["expires_in"]));
             Response.Cookies.Add(kuki);
 
+            MvcApplication.httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", (string)jdata["access_token"]);
+            Session["userId"] = (string)jdata["userId"];
+            Session["userName"] = (string)jdata["userName"];
+            //Session["userRole"] = (string)jdata["userRole"];
+            //Session["accessToken"] = (string)jdata["access_token"];
             return Json("{}");
         }
         [HttpGet]
         public ActionResult Register()
         {
-
             return View();
         }
         [HttpPost]
@@ -74,6 +79,8 @@ namespace WebUI.Controllers
                 Response.Cookies["accessToken"].Expires = DateTime.Now.AddDays(-1);
             }
 
+            MvcApplication.httpClient.DefaultRequestHeaders.Authorization = null;
+            Session.Clear();
             return RedirectToAction("Index", "Home");
         }
 

@@ -40,7 +40,7 @@
                             <li class="navbar-item">
                                 <a href="#" class="nav-link">Contact</a>
                             </li>
-                            @if (Request.Cookies["accessToken"] == null)
+                            @if (Session["userId"] == null)
                             {
                                 <li class="navbar-item">
                                     <a href="/Account/Register">Register</a>

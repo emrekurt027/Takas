@@ -7,6 +7,7 @@ using System.Net.Http;
 using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
+using WebUI.Filters;
 
 namespace WebUI.Controllers
 {
@@ -36,13 +37,14 @@ namespace WebUI.Controllers
 
             return View();
         }
-
+        
+        [AuthFilter]
         [HttpGet]
         public ActionResult AddNew()
         {
             return View();
         }
-
+        
         [HttpPost]
         public async Task<ActionResult> AddNew(ProductAddModel model)
         {
@@ -50,7 +52,8 @@ namespace WebUI.Controllers
             {
                 return View(model);
             }
-            
+
+            model.UserId = Session["userId"].ToString();
             var response = await MvcApplication.httpClient.PostAsJsonAsync("api/Product/AddNewData", model);
             
             if (response.IsSuccessStatusCode)

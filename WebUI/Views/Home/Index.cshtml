@@ -17,39 +17,41 @@
         </div>
         <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
             <div class="carousel-inner">
-                <div class="carousel-item active">
+                @if(Model != null)
+                { 
+                    <div class="carousel-item active">
 
-                    <div class="card-deck">
-                       @for (int i=0; i<Model.Count()/2; i++)
-                       {
-                           if (Model.ElementAt(i) == null)
+                        <div class="card-deck">
+                           @for (int i=0; i<Model.Count()/2; i++)
                            {
-                               continue;
-                           }
+                               if (Model.ElementAt(i) == null)
+                               {
+                                   continue;
+                               }
 
-                            <div class="card p-3" style="width: 12rem;">
-                                <a href="/Product/Details/@Model.ElementAt(i).Id"><img class="card-img-top" style="width:100%;  height: auto;" src=@Model.ElementAt(i).Images alt="Card image cap"></a>
-                            </div>
-                        }
-                    </div>
-
-                </div>
-                <div class="carousel-item">
-                    <div class="card-deck">
-                        @for (int i = Model.Count() / 2; i < Model.Count(); i++)
-                        {
-                            if (Model.ElementAt(i) == null)
-                            {
-                                continue;
+                                <div class="card p-3" style="width: 12rem;">
+                                    <a href="/Product/Details/@Model.ElementAt(i).Id"><img class="card-img-top" style="width:100%;  height: auto;" src=@Model.ElementAt(i).Images alt="Card image cap"></a>
+                                </div>
                             }
+                        </div>
 
-                            <div class="card p-3" style="width: 12rem;">
-                                <a href="/Product/Details/@Model.ElementAt(i).Id"><img class="card-img-top" style="width:100%;  height: auto;" src=@Model.ElementAt(i).Images alt="Card image cap"></a>
-                            </div>
-                        }
                     </div>
-                </div>
+                    <div class="carousel-item">
+                        <div class="card-deck">
+                            @for (int i = Model.Count() / 2; i < Model.Count(); i++)
+                            {
+                                if (Model.ElementAt(i) == null)
+                                {
+                                    continue;
+                                }
 
+                                <div class="card p-3" style="width: 12rem;">
+                                    <a href="/Product/Details/@Model.ElementAt(i).Id"><img class="card-img-top" style="width:100%;  height: auto;" src=@Model.ElementAt(i).Images alt="Card image cap"></a>
+                                </div>
+                            }
+                        </div>
+                    </div>
+                }
             </div>
             <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
                 <span class="carousel-control-prev-icon" aria-hidden="true"></span>

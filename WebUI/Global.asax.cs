@@ -17,8 +17,6 @@ namespace WebUI
         protected void Application_Start()
         {
 
-            ///Şu an için webui katmanından webapiye request yolladığınızda Cross-Origin hatası veriyor. -Düzeltilecek.
-
             AreaRegistration.RegisterAllAreas();
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
             RouteConfig.RegisterRoutes(RouteTable.Routes);

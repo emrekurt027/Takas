@@ -1,5 +1,6 @@
 ﻿using System.Web;
 using System.Web.Mvc;
+using WebUI.Filters;
 
 namespace WebUI
 {
@@ -8,6 +9,8 @@ namespace WebUI
         public static void RegisterGlobalFilters(GlobalFilterCollection filters)
         {
             filters.Add(new HandleErrorAttribute());
+            filters.Add(new MainFilter());
         }
+    
     }
 }

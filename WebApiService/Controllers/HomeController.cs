@@ -9,13 +9,9 @@ namespace WebApiService.Controllers
 {
     public class HomeController : Controller
     {
-        public async Task<ActionResult> Index()
+        public ActionResult Index()
         {
             ViewBag.Title = "Home Page";
-
-            //Services.GoodReadsService.GetBooks getBooks = new Services.GoodReadsService.GetBooks();
-            //await getBooks.IndexAsync("scare");
-
             return View();
         }
     }

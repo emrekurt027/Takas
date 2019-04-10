@@ -27,12 +27,12 @@
                         {
                             if (item.State == true)
                             {
-                    <tr>
+                    <tr data-productId=@item.ProductId>
                         <th scope="row">@item.OrderID</th>
-                        <td>@item.ProductName</td>
-                        <td>@item.UserName</td>
-                        <td>@item.Date</td>
-                        <td>@Html.ActionLink("Sil", "CancelOrder", "Admin"@*,new { @orderId= item.OrderID },null*@)</td>
+                        <td >@item.ProductName</td>
+                        <td >@item.UserName</td>
+                        <td >@item.Date</td>
+                        <td >@Html.ActionLink("Sil", "CancelOrder", "Admin"@*,new { @orderId= item.OrderID },null*@)</td>
                     </tr>
                     }
                         }
@@ -49,21 +49,23 @@
                         <th scope="col">Kitap</th>
                         <th scope="col">Kullanici</th>
                         <th scope="col">Tarih</th>
+                        <th> </th>
                     </tr>
                 </thead>
                 <tbody>
                     @foreach (var item in Model)
+                    {
+                        if (item.State == false)
                         {
-                            if (item.State == false)
-                            {
-                    <tr>
-                        <th scope="row">@item.OrderID</th>
-                        <td>@item.ProductName</td>
-                        <td>@item.UserName</td>
-                        <td>@item.Date</td>
-                    </tr>
-                    }
+                            <tr data-productId=@item.ProductId>
+                                <th scope="row">@item.OrderID</th>
+                                <td>@item.ProductName</td>
+                                <td>@item.UserName</td>
+                                <td>@item.Date</td>
+                                <td>@Html.ActionLink("Sil", "CancelOrder", "Admin"@*,new { @orderId= item.OrderID },null*@)</td>
+                            </tr>
                         }
+                    }
                 </tbody>
             </table>
             @Html.ActionLink("< Geri", "Index", "Admin")

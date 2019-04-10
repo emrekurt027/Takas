@@ -43,20 +43,19 @@ namespace WebUI.Controllers
             return View();
         }
 
+        public async Task<ActionResult> VerifyOrder(int id)
+        {
 
-        //public async Task<ActionResult> VerifyOrder(int orderId)
-        //{
+            var response = await MvcApplication.httpClient.GetAsync("api/Order/...");
+            if (response.IsSuccessStatusCode)
+            {
+                var order = await response.Content.ReadAsAsync<OrderShowModel>();
+                return View(order);
+            }
 
-        //    var response = await MvcApplication.httpClient.GetAsync("api/Order/...");
-        //    if (response.IsSuccessStatusCode)
-        //    {
-        //        var order = await response.Content.ReadAsAsync<OrderShowModel>();
-        //        return View(order);
-        //    }
+            return View();
 
-        //    return View();
-
-        //}
+        }
 
 
         //public async Task<ActionResult> CancelOrder(int orderId)

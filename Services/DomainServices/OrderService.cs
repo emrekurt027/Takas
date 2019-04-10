@@ -23,6 +23,7 @@ namespace Services.DomainServices
                     State = order.State,
                     ProductName = order.Product.Name,
                     Date = order.Date,
+                    ProductId=order.ProductId,                    
                     ImageUrl = order.Product.ImageUrl,
                     OrderID = order.Id,
                     UserName = context.Users.Where(user => user.Id == order.UserId).FirstOrDefault().UserName
@@ -67,6 +68,7 @@ namespace Services.DomainServices
                     Date = order.Date,
                     ImageUrl = order.Product.ImageUrl,
                     OrderID = order.Id,
+                    ProductId=order.ProductId,
                     UserName = context.Users.Where(user => user.Id == order.UserId).FirstOrDefault().UserName
                 }).ToList();
                 return orders;
@@ -86,6 +88,7 @@ namespace Services.DomainServices
                     State = order.State,
                     ProductName = order.Product.Name,
                     Date = order.Date,
+                    ProductId=order.ProductId,
                     ImageUrl = order.Product.ImageUrl,
                     OrderID = order.Id,
                     UserName = context.Users.Where(user => user.Id == order.UserId).FirstOrDefault().UserName
@@ -106,6 +109,7 @@ namespace Services.DomainServices
                     Date = order.Date,
                     ImageUrl = order.Product.ImageUrl,
                     OrderID = order.Id,
+                    ProductId=order.ProductId,
                     UserName = context.Users.Where(user => user.Id == order.UserId).FirstOrDefault().UserName
                 }).ToList();
                 return orders;
@@ -124,6 +128,7 @@ namespace Services.DomainServices
                     Date = order.Date,
                     ImageUrl = order.Product.ImageUrl,
                     OrderID = order.Id,
+                    ProductId=order.ProductId,
                     UserName = context.Users.Where(user => user.Id == order.UserId).FirstOrDefault().UserName
                 }).ToList();
                 return orders;

@@ -110,9 +110,19 @@ namespace Services.DomainServices
                         catList.Add(cat);
                     }
                 };
+                
+                context.Orders.Add(new Order()
+                {
+                    CheckByAdmin = false,
+                    Date=DateTime.Now,
+                    State=true,
+                    UserId=product.UserId,
+                    ProductId=product.Id    
+                });
+
                 if(catList.Count > 0)
                     context.Categories.AddRange(catList);
-
+                
 
                 await context.SaveChangesAsync();
             }

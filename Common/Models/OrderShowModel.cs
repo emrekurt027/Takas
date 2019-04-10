@@ -12,12 +12,8 @@ namespace Common.Models
         public bool State { get; set; }
         public string UserName { get; set; }
         public string ProductName { get; set; }
+        public int ProductId { get; set; }
         public string ImageUrl { get; set; }
         public DateTime Date { get; set; }
-
-        public static implicit operator List<object>(OrderShowModel v)
-        {
-            throw new NotImplementedException();
-        }
     }
 }

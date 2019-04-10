@@ -39,12 +39,29 @@ namespace WebApiService.Controllers
             }
         }
 
+        //Admin Cancel
         [Route("CancelOrder")]
         public async Task<IHttpActionResult> CancelOrder(int orderId)
         {
             try
             {
                 await _orderService.CancelOrder(orderId);
+                return Ok();
+            }
+            catch (Exception e)
+            {
+                return Content(HttpStatusCode.InternalServerError, e.Message);
+            }
+        }
+
+
+        //Admin Verify 
+        [Route("Verify")]
+        public async Task<IHttpActionResult> VerifyOrder(int orderId)
+        {
+            try
+            {
+                await _orderService.VerifyOrder(orderId);
                 return Ok();
             }
             catch (Exception e)

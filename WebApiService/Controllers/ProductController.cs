@@ -72,7 +72,7 @@ namespace WebApiService.Controllers
         {
             try
             {
-                await _productService.AddNewProduct(productModel);
+                await _productService.AddNewProduct(productModel); 
                 return Ok();
             }
             catch (Exception e)

@@ -64,6 +64,7 @@ namespace WebApiService.Controllers
             {
                 UserId = User.Identity.GetUserId(),
                 UserName = User.Identity.GetUserName(),
+                UserRole = UserManager.GetRoles(User.Identity.GetUserId())[0],
                 HasRegistered = externalLogin == null,
                 LoginProvider = externalLogin != null ? externalLogin.LoginProvider : null
             };
@@ -267,7 +268,7 @@ namespace WebApiService.Controllers
                 ClaimsIdentity cookieIdentity = await user.GenerateUserIdentityAsync(UserManager,
                     CookieAuthenticationDefaults.AuthenticationType);
 
-                AuthenticationProperties properties = ApplicationOAuthProvider.CreateProperties(user.UserName, user.Id);
+                AuthenticationProperties properties = ApplicationOAuthProvider.CreateProperties(user.UserName, user.Id, UserManager.GetRoles(user.Id)[0]);
                 Authentication.SignIn(properties, oAuthIdentity, cookieIdentity);
             }
             else
@@ -343,6 +344,13 @@ namespace WebApiService.Controllers
             if (!result.Succeeded)
             {
                 return GetErrorResult(result);
+            }
+
+
+            IdentityResult roleResult = await UserManager.AddToRoleAsync(user.Id, "User");
+            if(!roleResult.Succeeded)
+            {
+                return GetErrorResult(roleResult);
             }
 
             return Ok();

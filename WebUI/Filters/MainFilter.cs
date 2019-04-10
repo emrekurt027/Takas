@@ -31,6 +31,7 @@ namespace WebUI.Filters
 
                     filterContext.HttpContext.Session["userId"] = (string)jdata["UserId"];
                     filterContext.HttpContext.Session["userName"] = (string)jdata["UserName"];
+                    filterContext.HttpContext.Session["userRole"] = (string)jdata["UserRole"];
 
                 }
             }

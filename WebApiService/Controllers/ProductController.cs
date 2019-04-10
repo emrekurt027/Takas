@@ -66,6 +66,7 @@ namespace WebApiService.Controllers
             return Ok(product);
         }
         //Product nesenesini veri tabanına ekler
+        [Authorize(Roles ="User, Admin")]
         [HttpPost]
         [Route("AddNewData")]
         public async Task<IHttpActionResult> AddNewData(ProductAddModel productModel)

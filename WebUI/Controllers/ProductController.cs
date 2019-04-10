@@ -26,6 +26,7 @@ namespace WebUI.Controllers
 
             return View();
         }
+
         public async Task<ActionResult> Details(int id)
         {
             var response = await MvcApplication.httpClient.GetAsync("api/Product/GetDetails?id=" + id );
@@ -38,7 +39,7 @@ namespace WebUI.Controllers
             return View();
         }
         
-        [AuthFilter]
+        //[AuthFilter(Roles ="User")]
         [HttpGet]
         public ActionResult AddNew()
         {

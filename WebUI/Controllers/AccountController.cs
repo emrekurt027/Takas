@@ -50,8 +50,7 @@ namespace WebUI.Controllers
             MvcApplication.httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", (string)jdata["access_token"]);
             Session["userId"] = (string)jdata["userId"];
             Session["userName"] = (string)jdata["userName"];
-            //Session["userRole"] = (string)jdata["userRole"];
-            //Session["accessToken"] = (string)jdata["access_token"];
+            Session["userRole"] = (string)jdata["userRole"];
             return Json("{}");
         }
         [HttpGet]

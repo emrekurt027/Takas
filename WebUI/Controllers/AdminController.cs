@@ -6,11 +6,13 @@ using System.Net.Http;
 using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
+using WebUI.Filters;
 
 namespace WebUI.Controllers
 {
     public class AdminController : Controller
     {
+        //[AuthFilter(Roles ="Admin")]
         // GET: Admin
         public ActionResult Index()
         {

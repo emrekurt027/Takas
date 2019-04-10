@@ -8,6 +8,7 @@ namespace WebUI.Filters
 {
     public class AuthFilter : AuthorizeAttribute, IAuthorizationFilter
     {
+
         public override void OnAuthorization(AuthorizationContext filterContext)
         {
             if (filterContext.ActionDescriptor.IsDefined(typeof(AllowAnonymousAttribute), true)
@@ -18,8 +19,15 @@ namespace WebUI.Filters
             }
 
             // Check for authorization  
-            if (HttpContext.Current.Session["userName"] == null)
+            if (!String.IsNullOrEmpty(Roles) &&
+                filterContext.HttpContext.Session["userRole"] != null &&
+                Roles.Contains(filterContext.HttpContext.Session["userRole"].ToString()))
             {
+                //allow
+            }
+            else
+            {
+                //nope
                 filterContext.Result = new RedirectResult("/Home/Index");
             }
         }

@@ -1,0 +1,97 @@
+﻿@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<style>
+    #rightsection {
+        float: right;
+        border-collapse: collapse;
+        border: 1px solid darkgrey;
+        width: 100%;
+    }
+</style>
+
+<script>
+    $(function () {
+
+        $("#aldiklarim").on("click", function () {
+            console.log("tıkladım");
+            $.ajax({
+                url: "/Profile/ReceivedBooks", type: "POST", success: function (d) {
+                    $("#table").remove();
+                    $("#lefttable").append(d);
+                }
+            });
+                })
+
+    });
+    $(function () {
+
+        $("#sattiklarim").on("click", function () {
+            console.log("tıkladım");
+            $.ajax({
+                url: "/Profile/SendBooks", type: "POST", success: function (d) {
+                    $("#table").remove();
+                    $("#lefttable").append(d);
+                }
+            });
+        })
+
+    });
+
+    $(function () {
+
+        $("#onaylanmayan").on("click", function () {
+            console.log("tıkladım");
+            $.ajax({
+                url: "/Profile/NotApprovedOrders", type: "POST", success: function (d) {
+                    $("#table").remove();
+                    $("#lefttable").append(d);
+                }
+            });
+        })
+
+    });
+</script>
+
+<div style="padding-top:5%;">
+    <div class="col-lg-4" id="rightsection">
+
+        <img src="~/Images/profile-icon.png" style="width:100px" />
+        <article class="box">
+            <div class="icontext  mb-4">
+                <div><i class="fa fa-user"></i></div>
+                <div class="text-wrap">
+
+                    <div>
+                        <div class="b"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Username</font></font></div>
+                    </div>
+                </div>
+            </div> <!-- icontext.// -->
+
+            <div>
+
+                <div><button type="button" class="btn btn-link" id="aldiklarim">Satın Aldıklarım</button></div>
+                <div><button type="button" class="btn btn-link" id="sattiklarim">Siteye Sattıklarım</button></div>
+                <div><button type="button" class="btn btn-link" id="onaylanmayan">Onay Bekleyen Siparişlerim</button></div>
+                <div>
+                    @*<button type="button" class="btn btn-link">Ayarlar</button>*@
+                @*@Html.ActionLink("Ayarlar", "Settings")*@
+                <a href="http://localhost:2873/Profile/Settings" class="btn btn-link" id="ayarlar">Ayarlar</a>
+            </div>
+            <button type="button" class="btn btn-link">Çıkış Yap</button>
+        </div>
+
+    </article> <!-- box.// -->
+
+</div>
+
+</div>
+
+<div class="col-lg-8" id="lefttable">
+    <div id="table"></div>
+</div>
+
+
+
+

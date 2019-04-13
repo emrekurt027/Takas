@@ -20,6 +20,20 @@ namespace Services.DomainServices
             }
         }
 
+        public List<ProductShowModel> Search(string term)
+        {
+            using (context = new MyDbContext())
+            {
+                return context.Products.Where(p => p.Name.Contains(term)).Select(p=> new ProductShowModel()
+                {
+                    Id = p.Id,
+                    Name = p.Name,
+                }).ToList();
+               
+            }
+        }
+ 
+       
         public async Task<List<ProductShowModel>> GetRandomProducts(int limit)
         {
             using (context = new MyDbContext())

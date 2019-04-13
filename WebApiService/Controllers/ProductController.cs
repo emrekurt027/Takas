@@ -38,6 +38,23 @@ namespace WebApiService.Controllers
             }
         }
 
+        
+       [HttpGet]
+        [Route("Search")]
+        public IHttpActionResult SearchAsync(string term)
+{
+            var product = _productService.Search(term);
+            if (product == null)
+            {
+                return NotFound();
+            }
+
+            return Ok(product);
+        }
+
+
+
+
         //verilen sayıda ürünü getirir
         [Route("GetDataForSlider")]
         public async Task<IHttpActionResult> GetDataForSliderAsync(int count)

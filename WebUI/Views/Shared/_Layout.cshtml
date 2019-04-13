@@ -11,6 +11,9 @@
     <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
     <link href="~/css/bootstrap.min.css" rel="stylesheet" />
     <link href="~/css/styles.css" rel="stylesheet" />
+
+    @model IEnumerable<Common.Models.ProductShowModel>
+
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")
@@ -49,10 +52,10 @@
                             @if (Session["userId"] == null)
                             {
                                 <li class="navbar-item" style="padding: 0 15px;">
-                                    <a href="@Url.Action("Register", "Account")"  class="nav-link">Register</a>
+                                    <a href="@Url.Action("Register", "Account")" class="nav-link">Register</a>
                                 </li>
                                 <li class="navbar-item">
-                                    <a href="#" id="SignButton"  class="nav-link">Login</a>
+                                    <a href="#" id="SignButton" class="nav-link">Login</a>
                                 </li>
                             }
                             else
@@ -93,13 +96,13 @@
                                                             </form>
                                                         </div>
 
-                                                </article> <!-- box.// -->
+                                                    </article> <!-- box.// -->
+
+                                                </div>
 
                                             </div>
 
-                                        </div>
 
-                                       
                                         </div>
                                     </div>
 
@@ -108,41 +111,45 @@
                             }
                         </ul>
 
-                        @*<form class="form-inline my-2 my-lg-0">
-                            <input class="form-control mr-sm-2" type="search" placeholder="Search here..." aria-label="Search">
-                            <span class="fa fa-search"></span>
-                        </form>*@
+                        <form action="" class="site-block-top-search">
+                            <span class="icon icon-search2"></span>
+                            <input type="text" class="form-control border-0" placeholder="Search" id="searchProduct">
+
+                        </form>
+
+
+
                     </div>
                 </nav>
             </div>
         </div>
     </header>
-    
+
 
     <div class="container body-content">
         @RenderBody()
 
-     
+
         @*<footer>
-            <div class="copy-right">
-                <div class="container">
-                    <div class="row">
-                        <div class="col-md-6">
-                            <h5>(C) 2019. All Rights Reserved.</h5>
-                        </div>
-                        <div class="col-md-6">
-                            <div class="share align-middle">
-                                <span class="fb"><i class="fa fa-facebook-official"></i></span>
-                                <span class="instagram"><i class="fa fa-instagram"></i></span>
-                                <span class="twitter"><i class="fa fa-twitter"></i></span>
-                                <span class="pinterest"><i class="fa fa-pinterest"></i></span>
-                                <span class="google"><i class="fa fa-google-plus"></i></span>
+                <div class="copy-right">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <h5>(C) 2019. All Rights Reserved.</h5>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="share align-middle">
+                                    <span class="fb"><i class="fa fa-facebook-official"></i></span>
+                                    <span class="instagram"><i class="fa fa-instagram"></i></span>
+                                    <span class="twitter"><i class="fa fa-twitter"></i></span>
+                                    <span class="pinterest"><i class="fa fa-pinterest"></i></span>
+                                    <span class="google"><i class="fa fa-google-plus"></i></span>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
-            </div>
-        </footer>*@
+            </footer>*@
 
     </div>
 
@@ -157,6 +164,8 @@
 
     <script src="~/Scripts/Site.js"></script>
     <script src="~/Scripts/myapp.js"></script>
+    <script src="~/Scripts/search.js"></script>
+
 
     @RenderSection("scripts", required: false)
 </body>

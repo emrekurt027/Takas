@@ -38,7 +38,25 @@ namespace WebUI.Controllers
 
             return View();
         }
-        
+
+
+        [HttpGet]
+        public async Task<ActionResult> SearchProduct(string term)
+        {
+            var response = await MvcApplication.httpClient.GetAsync("api/Product/Search?term=" + term);
+            if (response.IsSuccessStatusCode)
+            {
+                //List<ProductShowModel> products = await response.Content.ReadAsAsync<List<ProductShowModel>>();
+                var products = await response.Content.ReadAsStringAsync();
+                var jj = Json(products);
+
+                return Json(products, JsonRequestBehavior.AllowGet);
+            }
+
+            return Json("");
+        }
+
+
         //[AuthFilter(Roles ="User")]
         [HttpGet]
         public ActionResult AddNew()

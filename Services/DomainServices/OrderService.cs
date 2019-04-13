@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Data.Entity;
+using Data.Domains;
 
 namespace Services.DomainServices
 {
@@ -45,7 +46,16 @@ namespace Services.DomainServices
                 Order order=context.Set<Order>().Where(p => p.Id == orderId).FirstOrDefault();
                 order.CheckByAdmin = true;
                 order.Product.Verify=true;
-                await Update(order);
+                ApplicationUser user = await context.Users.Where(p => p.Id == order.UserId).FirstAsync();
+                if (order.State)
+                {
+                    user.Credits += 1;
+                }
+                else { user.Credits -= 1; }
+                Order o2 = context.Orders.Where(p=>p.Id==order.Id).FirstOrDefault();
+                context.Entry(o2).CurrentValues.SetValues(order);
+
+                context.SaveChanges();
             }
         }
 

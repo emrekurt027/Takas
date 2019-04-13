@@ -48,10 +48,10 @@ namespace Services
         {
             using (context = new MyDbContext())
             {
-                var oldProduct = await GetById(obj.Id);
+                T oldProduct = await GetById(obj.Id);
                 if (oldProduct == null)
                     return false;
-                context.Entry(oldProduct).CurrentValues.SetValues(obj);
+                context.Entry<T>(oldProduct).CurrentValues.SetValues(obj);
                 await context.SaveChangesAsync();
                 return true;
             }

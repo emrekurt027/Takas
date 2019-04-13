@@ -47,15 +47,13 @@ namespace WebUI.Controllers
 
         public async Task<ActionResult> VerifyOrder(int id)
         {
-
-            var response = await MvcApplication.httpClient.GetAsync("api/Order/...");
+            var response = await MvcApplication.httpClient.PostAsJsonAsync("api/Order/Verify", id);
             if (response.IsSuccessStatusCode)
             {
-                var order = await response.Content.ReadAsAsync<OrderShowModel>();
-                return View(order);
+                return RedirectToAction("WillApprove", "Admin");
             }
 
-            return View();
+            return RedirectToAction("WillApprove", "Admin");
 
         }
 

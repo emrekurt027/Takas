@@ -56,8 +56,9 @@ namespace WebApiService.Controllers
 
 
         //Admin Verify 
+        [HttpPost]
         [Route("Verify")]
-        public async Task<IHttpActionResult> VerifyOrder(int orderId)
+        public async Task<IHttpActionResult> VerifyOrder([FromBody]int orderId)
         {
             try
             {

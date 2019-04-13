@@ -7,7 +7,7 @@
     <meta name="theme-color" content="#03a6f3">
 
     <link href="https://fonts.googleapis.com/css?family=Montserrat:200,300,400,500,600,700,800,900" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
     <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
     <link href="~/css/bootstrap.min.css" rel="stylesheet" />
     <link href="~/css/styles.css" rel="stylesheet" />
@@ -15,6 +15,12 @@
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")
     @Scripts.Render("~/bundles/modernizr")
+    <style>
+        #rightsection {
+            border-collapse: collapse;
+            width: 100%;
+        }
+    </style>
 </head>
 <body>
     <header>
@@ -52,17 +58,48 @@
                             else
                             {
                                 <li class="nav-item">
-                                    <div class="dropdown">
+                                    <div class="dropdown" style="padding-left:15px;padding-right:15px;">
                                         <a class=" nav-item dropdown-toggle nav-link" id="btnDropdownDemo" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                             Profile
                                         </a>
-                                        <div class="dropdown-menu" aria-labelledby="btnDropdownDemo">
-                                            <a class="dropdown-item" href="#">Sent</a>
-                                            <a class="dropdown-item" href="#">My Orders</a>
-                                            <a class="dropdown-item" href="#">Settings</a>
-                                            <form method="post" action="@Url.Action("Logout", "Account")" id="signoutDropdown">
-                                                <a class="dropdown-item" onclick="$('#signoutDropdown').submit()">Log Out</a>
-                                            </form>
+                                        <div class="dropdown-menu" aria-labelledby="btnDropdownDemo" style="left: -82px;">
+
+                                            <div style="padding-top:5%;">
+                                                <div class="col-lg-4" id="rightsection">
+
+                                                    @*<img src="~/Images/profile-icon.png" style="width:100px" />*@
+                                                    <article class="box">
+                                                        <div class="icontext  mb-4">
+                                                            <div class="text-wrap">
+                                                                <div>
+                                                                    <a class="dropdown-item p-0"><i class="fas fa-user pr-3"></i> @Session["userName"]</a>
+                                                                </div>
+                                                            </div>
+                                                        </div> <!-- icontext.// -->
+
+                                                        <div>
+                                                            <hr />
+                                                            <a href="" class="dropdown-item p-0"><i class="fas fa-file-import pr-2"></i>Received Books</a>
+                                                            <a href="" class="dropdown-item p-0"><i class="fas fa-file-export pr-2"></i>Sent Books</a>
+                                                            <a href="" class="dropdown-item p-0"><i class="fas fa-check pr-2"></i>Not Approved Order</a>
+
+                                                            @*<button type="button" class="btn btn-link">Ayarlar</button>*@
+                                                            @*@Html.ActionLink("Ayarlar", "Settings")*@
+                                                            <hr />
+                                                            <a href="http://localhost:2873/Profile/Settings" class="dropdown-item p-0" id="ayarlar"> <i class="fas fa-cogs pr-2"></i> Settings</a>
+
+                                                            <form method="post" action="@Url.Action("Logout", "Account")" id="signoutDropdown">
+                                                                <a class="dropdown-item p-0" onclick="$('#signoutDropdown').submit()"> <i class="fas fa-sign-out-alt pr-2"></i> Log Out</a>
+                                                            </form>
+                                                        </div>
+
+                                                </article> <!-- box.// -->
+
+                                            </div>
+
+                                        </div>
+
+                                       
                                         </div>
                                     </div>
 

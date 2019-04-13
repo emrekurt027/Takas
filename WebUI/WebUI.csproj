@@ -236,9 +236,6 @@
     <Content Include="Views\Home\Contact.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Account\Index.cshtml" />
-    <Content Include="Views\Profile\ReceivedBooks.cshtml" />
-    <Content Include="Views\Profile\SendBooks.cshtml" />
-    <Content Include="Views\Profile\NotApprovedOrders.cshtml" />
     <Content Include="Views\Account\Register.cshtml" />
     <Content Include="Views\Shared\_LoginPopUp.cshtml" />
     <Content Include="Views\Product\Details.cshtml" />
@@ -259,6 +256,7 @@
     <Content Include="Views\Admin\WillApprove.cshtml" />
     <Content Include="Views\Admin\Approved.cshtml" />
     <Content Include="Views\Profile\Index.cshtml" />
+    <Content Include="Views\Shared\_PartialBooks.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

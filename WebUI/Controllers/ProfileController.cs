@@ -20,33 +20,38 @@ namespace WebUI.Controllers
             return View();
         }
 
-        [Route("ReceviedBooks")]
-        public ActionResult ReceivedBooks()
+        [HttpPost]
+        public PartialViewResult ReceivedBooks()
+        {
+            return PartialView("_PartialBooks");
+        }
+        [HttpPost]
+        public PartialViewResult SendBooks()
+        {
+            //HttpClient client = new HttpClient();
+
+            //client.BaseAddress = new Uri("http://localhost:2252");
+            //client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+            //HttpResponseMessage response;
+            //response = client.GetAsync("api/Product/GetDataById?id=1").Result;
+
+            //if (response.StatusCode == HttpStatusCode.OK)
+            //{
+            //    OrderShowModel jResult = response.Content.ReadAsAsync<OrderShowModel>().Result;
+            //    return View(jResult);
+            //}
+
+            return PartialView("_PartialBooks");
+        }
+        [HttpPost]
+        public PartialViewResult NotApprovedOrders()
+        {
+            return PartialView("_PartialBooks");
+        }
+
+        public ActionResult Settings()
         {
             return View();
         }
-        [Route("SendBooks")]
-        public ActionResult SendBooks()
-        {
-            HttpClient client = new HttpClient();
-
-            client.BaseAddress = new Uri("http://localhost:2252");
-            client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
-            HttpResponseMessage response;
-            response = client.GetAsync("api/Product/GetDataById?id=1").Result;
-
-            if (response.StatusCode == HttpStatusCode.OK)
-            {
-                OrderShowModel jResult = response.Content.ReadAsAsync<OrderShowModel>().Result;
-                return View(jResult);
-            }
-
-            return View();
-        }
-        [Route("NotApprovedOrders")]
-        public ActionResult NotApprovedOrders()
-        {
-            return View();
-        }        
     }
 }

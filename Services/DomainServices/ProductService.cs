@@ -33,23 +33,23 @@ namespace Services.DomainServices
             }
         }
 
-      
-        //public List<ProductShowModel> LoadMore(int lastid)
-        //{        
-        //    using (context = new MyDbContext())
-        //    {
-        //        return context.Products.Where(t => t.Id > lastid).Take(4).Select(p => new ProductShowModel()
-        //        {
 
-        //            Id = p.Id,
-        //            Name = p.Name,
-        //            Images = p.ImageUrl
+        public List<ProductShowModel> LoadMore(int lastid)
+        {
+            using (context = new MyDbContext())
+            {
+                return context.Products.OrderBy(p=>p.Id).Skip(lastid).Take(3).Select(p => new ProductShowModel()
+                {
 
-        //        }).ToList();
-               
-        //    }
+                    Id = p.Id,
+                    Name = p.Name,
+                    Images = p.ImageUrl
 
-        //}
+                }).ToList();
+
+            }
+
+        }
 
         public async Task<List<ProductShowModel>> GetRandomProducts(int limit)
         {

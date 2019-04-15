@@ -5,7 +5,6 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 <link href="~/css/styles.css" rel="stylesheet" />
-<script src="~/Scripts/loadmore.js"></script>
 
 <style>
     .moreitemactions .spinner-border {
@@ -33,7 +32,7 @@
         @foreach (var item in Model)
         {
             <div class="col-md-3">
-                <a href="/Product/Details/@item.Id" class="item text-center">
+                <a href="/Product/Details/@item.Id" class="item text-center" data-pid="@item.Id">
                     <img src=@item.Images alt="img" style="width: 128px; height: 220px;">
                     <h3>@item.Name</h3>
                     @*<h6><span class="price">$19</span> / <a href="#">Buy Now</a></h6>*@
@@ -43,15 +42,15 @@
 
     </div>
 
-    @*<div style="clear:left;text-align:center;display:block;width:100%;" class="moreitemactions">
+    <div style="clear:left;text-align:center;display:block;width:100%;" class="moreitemactions">
         <div class="spinner-border text-primary" role="status">
             <span class="sr-only">Loading...</span>
         </div>
 
         <div class="btn-sec">
-            <button id="moreproduct" class="btn gray-btn" data-lastid="@Model.Last().Id">load More books</button>
+            <div id="moreproduct" class="btn gray-btn" data-lastid="@Model.Last().Id">Load More Books</div>
         </div>
-    </div>*@
+    </div>
 
 
 </div>

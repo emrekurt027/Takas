@@ -16,7 +16,7 @@ namespace WebUI.Controllers
         // GET: Product
         public async Task<ActionResult> Index()
         {
-            var response = await MvcApplication.httpClient.GetAsync("api/Product/GetData");
+            var response = await MvcApplication.httpClient.GetAsync("api/Product/LoadMore?lastid=" + 0);
             if (response.IsSuccessStatusCode)
             {
                 List<ProductShowModel> jResult = response.Content.ReadAsAsync<List<ProductShowModel>>().Result;
@@ -56,20 +56,19 @@ namespace WebUI.Controllers
             return Json("");
         }
 
-        //[HttpPost]
-        //public async Task<ActionResult> LoadMoreProduct(int lastid)
-        //{
-        //    var response = await MvcApplication.httpClient.PostAsJsonAsync("api/Product/LoadMore",lastid);
-        //    if (response.IsSuccessStatusCode)
-        //    {
+        [HttpGet]
+        public async Task<ActionResult> LoadMoreProduct(int lastid)
+        {
+            var response = await MvcApplication.httpClient.GetAsync("api/Product/LoadMore?lastid="+ lastid);
+            if (response.IsSuccessStatusCode)
+            {
 
-        //        var products = await response.Content.ReadAsStringAsync();
-        //        var jj =Json(products,JsonRequestBehavior.AllowGet);
-        //        return PartialView("PartialLoadMore", jj);
-        //    }
+                var products = await response.Content.ReadAsAsync<List<ProductShowModel>>();
+                return PartialView("_PartialLoadMore", products);
+            }
 
-        //    return View();
-        //}
+            return View();
+        }
 
 
         //[AuthFilter(Roles ="User")]

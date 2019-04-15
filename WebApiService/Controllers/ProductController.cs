@@ -52,6 +52,18 @@ namespace WebApiService.Controllers
             return Ok(product);
         }
 
+        //[HttpPost]
+        //[Route("LoadMore")]
+        //public IHttpActionResult LoadMoreAsync(int lastid)
+        //{
+        //    var products = _productService.LoadMore(lastid);
+        //    if (products == null)
+        //    {
+        //        return NotFound();
+        //    }
+
+        //    return Ok(products);
+        //}
 
 
 

@@ -151,6 +151,10 @@
     <Content Include="Content\Site.css" />
     <Content Include="images\about-img.jpg" />
     <Content Include="images\about.jpg" />
+    <Content Include="images\about1.jpg" />
+    <Content Include="images\about2.jpg" />
+    <Content Include="images\about3.jpg" />
+    <Content Include="images\about4.jpg" />
     <Content Include="images\amount.png" />
     <Content Include="images\img1.jpg" />
     <Content Include="images\img2.jpg" />
@@ -208,6 +212,7 @@
     <Content Include="Scripts\jquery.validate.min.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
+    <Content Include="Scripts\loadmore.js" />
     <Content Include="Scripts\modernizr-2.8.3.js" />
     <Content Include="Scripts\myapp.js" />
     <Content Include="Scripts\popper-utils.js" />
@@ -258,6 +263,7 @@
     <Content Include="Views\Admin\Approved.cshtml" />
     <Content Include="Views\Profile\Index.cshtml" />
     <Content Include="Views\Shared\_PartialBooks.cshtml" />
+    <Content Include="Views\Shared\_PartialLoadMore.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

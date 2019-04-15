@@ -1,0 +1,14 @@
+﻿
+@model IEnumerable<Common.Models.ProductShowModel>
+
+
+@foreach (var item in Model)
+{
+    <div class="col-md-3">
+        <a href="/Product/Details/@item.Id" class="item text-center">
+            <img src=@item.Images alt="img" style="width: 128px; height: 220px;">
+            <h3>@item.Name</h3>
+            @*<h6><span class="price">$19</span> / <a href="#">Buy Now</a></h6>*@
+        </a>
+    </div>
+}

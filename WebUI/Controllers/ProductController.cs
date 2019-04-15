@@ -56,6 +56,21 @@ namespace WebUI.Controllers
             return Json("");
         }
 
+        //[HttpPost]
+        //public async Task<ActionResult> LoadMoreProduct(int lastid)
+        //{
+        //    var response = await MvcApplication.httpClient.PostAsJsonAsync("api/Product/LoadMore",lastid);
+        //    if (response.IsSuccessStatusCode)
+        //    {
+
+        //        var products = await response.Content.ReadAsStringAsync();
+        //        var jj =Json(products,JsonRequestBehavior.AllowGet);
+        //        return PartialView("PartialLoadMore", jj);
+        //    }
+
+        //    return View();
+        //}
+
 
         //[AuthFilter(Roles ="User")]
         [HttpGet]

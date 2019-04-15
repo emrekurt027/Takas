@@ -32,8 +32,25 @@ namespace Services.DomainServices
                
             }
         }
- 
-       
+
+      
+        //public List<ProductShowModel> LoadMore(int lastid)
+        //{        
+        //    using (context = new MyDbContext())
+        //    {
+        //        return context.Products.Where(t => t.Id > lastid).Take(4).Select(p => new ProductShowModel()
+        //        {
+
+        //            Id = p.Id,
+        //            Name = p.Name,
+        //            Images = p.ImageUrl
+
+        //        }).ToList();
+               
+        //    }
+
+        //}
+
         public async Task<List<ProductShowModel>> GetRandomProducts(int limit)
         {
             using (context = new MyDbContext())
@@ -56,7 +73,7 @@ namespace Services.DomainServices
         {
             using (context = new MyDbContext())
             {
-                return context.Products.Select(p => new ProductShowModel()
+                return context.Products.Take(12).Select(p => new ProductShowModel()
                 {
                     Id = p.Id,
                     Name = p.Name,

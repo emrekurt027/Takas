@@ -11,7 +11,8 @@
     <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
     <link href="~/css/bootstrap.min.css" rel="stylesheet" />
     <link href="~/css/styles.css" rel="stylesheet" />
- 
+
+
 
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/jquery")
@@ -43,10 +44,10 @@
                                 <a href="@Url.Action("Index", "Product")" class="nav-link">Products</a>
                             </li>
                             <li class="navbar-item">
-                                <a href="#" class="nav-link">About</a>
+                                <a href="@Url.Action("About", "Home")" class="nav-link">About</a>
                             </li>
                             <li class="navbar-item">
-                                <a href="#" class="nav-link">Contact</a>
+                                <a href="@Url.Action("Contact", "Home")" class="nav-link">Contact</a>
                             </li>
                             @if (Session["userId"] == null)
                             {
@@ -128,27 +129,8 @@
     <div class="container body-content">
         @RenderBody()
 
+      
 
-        @*<footer>
-                <div class="copy-right">
-                    <div class="container">
-                        <div class="row">
-                            <div class="col-md-6">
-                                <h5>(C) 2019. All Rights Reserved.</h5>
-                            </div>
-                            <div class="col-md-6">
-                                <div class="share align-middle">
-                                    <span class="fb"><i class="fa fa-facebook-official"></i></span>
-                                    <span class="instagram"><i class="fa fa-instagram"></i></span>
-                                    <span class="twitter"><i class="fa fa-twitter"></i></span>
-                                    <span class="pinterest"><i class="fa fa-pinterest"></i></span>
-                                    <span class="google"><i class="fa fa-google-plus"></i></span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </footer>*@
 
     </div>
 
@@ -164,6 +146,7 @@
     <script src="~/Scripts/Site.js"></script>
     <script src="~/Scripts/myapp.js"></script>
     <script src="~/Scripts/search.js"></script>
+    <script src="~/Scripts/loadmore.js"></script>
 
 
     @RenderSection("scripts", required: false)

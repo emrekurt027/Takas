@@ -5,6 +5,21 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 <link href="~/css/styles.css" rel="stylesheet" />
+<script src="~/Scripts/loadmore.js"></script>
+
+<style>
+    .moreitemactions .spinner-border {
+        display: none;
+    }
+
+    .moreitemactions.inprogress .spinner-border {
+        display: inline-block !important;
+    }
+
+    .moreitemactions.inprogress button {
+        display: none !important;
+    }
+</style>
 
 <div class="breadcrumb">
     <div class="container">
@@ -14,7 +29,7 @@
 </div>
 
 <div class="recent-book-sec">
-    <div class="row">
+    <div class="row" id="productarea">
         @foreach (var item in Model)
         {
             <div class="col-md-3">
@@ -27,8 +42,17 @@
         }
 
     </div>
-    <div class="btn-sec">
-        <button class="btn gray-btn">load More books</button>
-    </div>
+
+    @*<div style="clear:left;text-align:center;display:block;width:100%;" class="moreitemactions">
+        <div class="spinner-border text-primary" role="status">
+            <span class="sr-only">Loading...</span>
+        </div>
+
+        <div class="btn-sec">
+            <button id="moreproduct" class="btn gray-btn" data-lastid="@Model.Last().Id">load More books</button>
+        </div>
+    </div>*@
+
+
 </div>
 
